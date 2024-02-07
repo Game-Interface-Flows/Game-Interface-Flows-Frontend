@@ -1,0 +1,4 @@
+# Custom
+.idea/
+*.DS_Store
+.env
