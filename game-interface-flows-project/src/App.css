@@ -37,33 +37,6 @@
   }
 }
 
-.board-container {
-  display: flex;
-  height: 100vh; /* Full height of the viewport */
-}
-
-.main-board {
-  min-width: 100vh;
-  min-height: 100vh;
-  overflow: auto;
-  background-size: 20px 20px;
-  background-image: 
-    radial-gradient(circle, #000 1px, transparent 1px),
-    radial-gradient(circle, #000 1px, transparent 1px);
-  background-position: 0 0, 20px 20px;
-}
-
-
-.right-panel {
-  position: fixed;
-  top: 0;
-  right: 0; 
-  height: 100vh;
-  width: 20%;
-  background-color: #f0f0f0;
-  overflow-y: auto;
-}
-
 .card-img-top {
   height: 100px;
   object-fit: cover;  
@@ -85,4 +58,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.full-size {
+  width: 100%;
+  height: 100%;
+  display: flex; 
+}
+
+.image-container {
+  flex-grow: 1;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewport-container {
+  height: calc(100vh - 56px);
+  position: relative;
+}
+
+.flow-background {
+  --dot-bg: white;
+  --dot-color: grey;
+  --dot-size: 1px;
+  --dot-space: 22px;
+	background:
+		linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+		linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+		var(--dot-color);
 }

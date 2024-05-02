@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Flow from "../components/Flow";
+import { useStore } from "../stores/storeContext";
+import { useParams } from "react-router-dom";
+import { FlowDetails } from "../components/FlowDetails";
+import { observer } from "mobx-react-lite";
 
-export function FlowPage() {
+const FlowPage: React.FC = observer(() => {
+	const [showFlowIngo, setShowFlowInfo] = useState(true);
+	const { flowsStore } = useStore();
+	const { flowId } = useParams<{ flowId: string }>();
+
+	useEffect(() => {
+		if (flowId) {
+			flowsStore.loadCurrentFlowById(parseInt(flowId, 10));
+		}
+	}, [flowId, flowsStore]);
+	
 	return (
-		<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At iusto minus molestiae non quibusdam quod reprehenderit velit. Eius enim error harum, minus natus non obcaecati perferendis praesentium qui quisquam quos repudiandae rerum sed ullam, voluptate! Ad commodi dignissimos dolor earum eum illum molestias porro possimus rem! Consequuntur error minima mollitia?</div>
+		<div className="container-fluid">
+			<div className="row">
+				<div className={`col-md-${showFlowIngo ? "9" : "12"} d-flex p-0`}>
+					<Flow flow={flowsStore.currentFlow} />
+					<button className="btn btn-secondary" onClick={() => setShowFlowInfo(!showFlowIngo)}>
+						{showFlowIngo ? ">" : "<"}
+					</button>
+				</div>
+				{showFlowIngo && (
+					<div className="col-md-3 d-flex">
+						<FlowDetails flow={flowsStore.currentFlow} />
+					</div>
+				)}
+			</div>
+		</div>
 	);
-}
+});
+
+export default FlowPage;

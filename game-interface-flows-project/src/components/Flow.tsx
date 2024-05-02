@@ -1,59 +1,31 @@
-import { IFlow } from "../models/flow";
-import React, { useState, useEffect, useRef } from "react";
-import request from "../api/request";
+import React from "react";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import "../App.css";
+import { IFlow } from "../models/flow";
 
-interface FlowProps {
-    flow: IFlow
+interface FlowContentProps {
+    flow: IFlow | null,
 }
 
-export function Flow({flow}: FlowProps) {
-	const [flowData, setFlowData] = useState<IFlow | null>(null);
-
-	useEffect(() => {
-		request<IFlow>("get", "/api/flow/24/")
-			.then(response => {
-				setFlowData(response.data);
-			})
-			.catch(error => {
-				console.error("Error fetching board data:", error);
-			});
-	}, []);
-
-	const boardRef = useRef<HTMLDivElement>(null);
-	const [boardSize, setBoardSize] = useState({ width: 0, height: 0 });
-
-	useEffect(() => {
-		let maxWidth = 0, maxHeight = 0;
-		flowData?.frames.forEach(image => {
-			const rightEdge = image.position_x + 1000;
-			const bottomEdge = image.position_y + 1000;
-			if (rightEdge > maxWidth) maxWidth = rightEdge;
-			if (bottomEdge > maxHeight) maxHeight = bottomEdge;
-		});
-		setBoardSize({ width: maxWidth, height: maxHeight });
-	}, [flowData?.frames]);
-
-
+export function Flow({flow}: FlowContentProps)  {
 	return (
-		<div className="board-container">
-			<div className="main-board" ref={boardRef} style={{
-				position: "relative",
-				width: `${boardSize.width}px`,
-				height: `${boardSize.height}px`,
-			}}>
-				{flowData?.frames.map(frame => (
-					<img
-						key={frame.id}
-						src={frame.frame}
-						alt={`Image ${frame.id}`}
-						style={{ position: "absolute", left: frame.position_x * 580, top: frame.position_y + 100 , width: 570, height: 360}}
-					/>
-				))}
-			</div>
-			<div className="right-panel">
-				<h2>{flow.title}</h2>
-			</div>
+		<div className="viewport-container flow-background overflow-hidden">
+			<TransformWrapper minScale={0.1} maxScale={3} limitToBounds={false}>
+				<TransformComponent>
+					<div style={{ width: "100000px", height: "100000px" }}>
+						{flow?.screens.map(screen => (
+							<img
+								key={screen.id}
+								src={screen.image}
+								alt={`Image ${screen.id}`}
+								style={{ position: "absolute", left: screen.position_x * 580, top: screen.position_y * 370 , width: 570, height: 360}}
+							/>
+						))}
+					</div>
+				</TransformComponent>
+			</TransformWrapper>
 		</div>
 	);
 }
+
+export default Flow;

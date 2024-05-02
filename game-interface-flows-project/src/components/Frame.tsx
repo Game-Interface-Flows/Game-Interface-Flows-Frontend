@@ -9,7 +9,7 @@ interface FrameProps {
 export function Frame({frame}: FrameProps) {
 	return (
 		<div>
-			<img key={frame.id} src={frame.frame}>
+			<img key={frame.id} src={frame.image}>
 			</img>
 		</div>
 	);

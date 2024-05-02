@@ -3,9 +3,11 @@ import { RootStore } from "./RootStore";
 import { BaseStore } from "./BaseStore";
 import { action, makeObservable, observable, runInAction } from "mobx";
 import { FlowService } from "../services/FlowService";
+import { IFlow } from "../models/flow";
 
 export class FlowStore extends BaseStore {
 	flows: IFlowPreview[] = [];
+	currentFlow: IFlow | null = null;
 	isLoading = false;
 	error = "";
 	service: FlowService = new FlowService();
@@ -14,6 +16,7 @@ export class FlowStore extends BaseStore {
 		super(rootStore);
 		makeObservable(this, {
 			flows: observable,
+			currentFlow: observable,
 			isLoading: observable,
 			error: observable,
 			loadFlows: action
@@ -26,6 +29,14 @@ export class FlowStore extends BaseStore {
 
 		runInAction(() => {
 			this.flows = fetchedFlows;
+		});
+	};
+
+	loadCurrentFlowById = async (flowId: number) => {
+		const fetchedFlow = await this.service.fetchFlowById(flowId);
+
+		runInAction(() => {
+			this.currentFlow = fetchedFlow;
 		});
 	};
 }

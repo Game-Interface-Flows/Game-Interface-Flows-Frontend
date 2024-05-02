@@ -12,7 +12,7 @@ const Navbar: React.FC = observer(() => {
 	const [showLogin, setShowLogin] = useState(false);
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 			<div className="container-fluid">
 				<Link className="navbar-brand" to="/">Books Super</Link>
 				<div className="collapse navbar-collapse" id="navbarNav">
