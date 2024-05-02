@@ -14,7 +14,7 @@ const Navbar: React.FC = observer(() => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 			<div className="container-fluid">
-				<Link className="navbar-brand" to="/">Books Super</Link>
+				<Link className="navbar-brand" to="/">Game Interface Flows</Link>
 				<div className="collapse navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
