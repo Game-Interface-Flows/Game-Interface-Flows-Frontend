@@ -7,16 +7,23 @@ import { IFlows } from "../models/flows";
 export class FlowService {
 	path = "/flows";
 
-	async fetchFlows(genres: string[] = [], platforms: string[] = []): Promise<IFlowPreview[]> {
+	async fetchFlows(genres: string[] = [], platforms: string[] = [], sort = "", order = ""): Promise<IFlowPreview[]> {
 		try {
-			const params: { genre?: string[], platform?: string[] } = {};
+			const params: { genre?: string[], platform?: string[], sort?: string, order?: string } = {};
 			if (genres.length > 0) {
 				params.genre = genres;
 			}
 			if (platforms.length > 0) {
 				params.platform = platforms;
 			}
+			if (sort) {
+				params.sort = sort;
+			}
+			if (order) {
+				params.order = order;
+			}
 			const response = await request<IFlows, typeof params>("GET", this.path, { params });
+			console.log(response.data.results);
 			return response.data.results; 
 		} catch (error) {
 			axiosErrorHandler<IFlows[]>(error => {

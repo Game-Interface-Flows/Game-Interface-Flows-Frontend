@@ -26,7 +26,9 @@ export class FlowStore extends BaseStore {
 	loadFlows = async () => {
 		const genres = this.rootStore.genresStore.selectedItemsNames;
 		const platforms = this.rootStore.platformsStore.selectedItemsNames;
-		const fetchedFlows = await this.service.fetchFlows(genres, platforms);
+		const sort = this.rootStore.sortingStore.getSelectedOptionName();
+		const order = this.rootStore.sortingStore.getSelectedOrder();
+		const fetchedFlows = await this.service.fetchFlows(genres, platforms, sort, order);
 
 		runInAction(() => {
 			this.flows = fetchedFlows;

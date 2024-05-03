@@ -21,22 +21,20 @@ export const GenericFilter: React.FC<FilterProps<IFilterItem>> = observer(({ sto
 	}
 
 	return (
-		<div>
-			<div className="list-group">
-				{store.items.map(item => (
-					<div key={item.id} className="list-group-item">
-						<label className="form-check-label">
-							<input
-								className="form-check-input"
-								type="checkbox"
-								checked={store.selectedItems.includes(item.id)}
-								onChange={() => handleCheckboxChange(item.id)}
-							/>
-							{item.name}
-						</label>
-					</div>
-				))}
-			</div>
+		<div className="list-group p-0">
+			{store.items.map(item => (
+				<div key={item.id} className="list-group-item">
+					<label className="form-check-label text-uppercase">
+						<input
+							className="form-check-input"
+							type="checkbox"
+							checked={store.selectedItems.includes(item.id)}
+							onChange={() => handleCheckboxChange(item.id)}
+						/>
+						{item.name}
+					</label>
+				</div>
+			))}
 		</div>
 	);
 });

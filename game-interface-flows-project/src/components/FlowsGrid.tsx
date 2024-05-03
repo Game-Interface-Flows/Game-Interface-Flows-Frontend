@@ -12,20 +12,12 @@ export const FlowsGrid: React.FC = observer(() => {
 
 
 	return (
-		<div className="container mt-4">
-			{flowsStore.isLoading ? (
-				<p>Loading books...</p>
-			) : flowsStore.error ? (
-				<p>Error: {flowsStore.error}</p>
-			) : (
-				<div className="row row-cols-1 row-cols-md-2 g-4">
-					{flowsStore.flows.map((flow) => (
-						<div key={flow.id} className="col">
-							<FlowPreview flow={flow} />
-						</div>
-					))}
+		<div className="row row-cols-1 row-cols-md-2 g-4">
+			{flowsStore.flows.map((flow) => (
+				<div key={flow.id} className="col">
+					<FlowPreview flow={flow} />
 				</div>
-			)}
+			))}
 		</div>
 	);
 });
