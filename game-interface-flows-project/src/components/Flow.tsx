@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
-import "../App.css";
 import { IFlow } from "../models/flow";
 import { ArcherContainer } from "react-archer";
 import { Frame } from "./Screen";

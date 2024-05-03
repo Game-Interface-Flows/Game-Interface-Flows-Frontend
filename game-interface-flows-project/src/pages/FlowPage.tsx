@@ -22,7 +22,7 @@ const FlowPage: React.FC = observer(() => {
 				<div className={`col-md-${showFlowIngo ? "9" : "12"} d-flex p-0`}>
 					<Flow flow={flowsStore.currentFlow} />
 					<button
-						className="btn btn-secondary"
+						className="btn-custom btn-custom-primary"
 						onClick={() => setShowFlowInfo(!showFlowIngo)}
 					>
 						{showFlowIngo ? ">" : "<"}

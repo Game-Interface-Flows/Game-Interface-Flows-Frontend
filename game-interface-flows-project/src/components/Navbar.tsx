@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SignUpModal from "./SignUpModal";
@@ -17,8 +16,8 @@ const Navbar: React.FC = observer(() => {
 	const isRoot = location.pathname === "/";
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-			<div className="container-fluid">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
+			<div className="container-fluid px-3 py-1">
 				<div className="col-4 d-flex align-items-center justify-content-start">
 					{!isRoot && (
 						<Link to="/">

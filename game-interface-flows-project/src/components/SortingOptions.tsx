@@ -14,10 +14,10 @@ export const SortingOptions: React.FC = observer(() => {
 	};
 
 	return (
-		<div>
-			<div className="row">
+		<div className="row p-0 m-0">
+			<div className="col-6 p-0 pe-1">
 				<select
-					className="form-control text-uppercase"
+					className="form-control text-uppercase h-100"
 					value={sortingStore.selectedOptionId}
 					onChange={handleSortingChange}
 				>
@@ -28,8 +28,11 @@ export const SortingOptions: React.FC = observer(() => {
 					))}
 				</select>
 			</div>
-			<div className="row">
-				<button className="btn btn-outline-secondary" onClick={toggleSortDirection}>
+			<div className="col-6 p-0 ps-1">
+				<button
+					className="btn-custom btn-custom-primary w-100"
+					onClick={toggleSortDirection}
+				>
 					{sortingStore.isAscending ? "↓" : "↑"}
 				</button>
 			</div>

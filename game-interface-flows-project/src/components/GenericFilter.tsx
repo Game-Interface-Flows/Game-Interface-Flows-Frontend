@@ -32,7 +32,7 @@ export const GenericFilter: React.FC<FilterProps<IFilterItem>> = observer(
 								checked={store.selectedItems.includes(item.id)}
 								onChange={() => handleCheckboxChange(item.id)}
 							/>
-							{item.name}
+							<span className="extra-space">{item.name}</span>
 						</label>
 					</div>
 				))}
