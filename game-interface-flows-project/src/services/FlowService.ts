@@ -1,7 +1,6 @@
 import { axiosErrorHandler } from "../api/error";
 import request from "../api/request";
 import { IFlow } from "../models/flow";
-import { IFlowPreview } from "../models/flow_preview";
 import { IFlows } from "../models/flows";
 
 export class FlowService {
@@ -12,7 +11,7 @@ export class FlowService {
 		platforms: string[] = [],
 		sort = "",
 		order = ""
-	): Promise<IFlowPreview[]> {
+	): Promise<IFlows | null> {
 		try {
 			const params: {
 				genre?: string[];
@@ -35,13 +34,25 @@ export class FlowService {
 			const response = await request<IFlows, typeof params>("GET", this.path, {
 				params,
 			});
-			console.log(response.data.results);
-			return response.data.results;
+			console.log(response.data);
+			return response.data;
 		} catch (error) {
 			axiosErrorHandler<IFlows[]>((error) => {
 				console.log(error);
 			});
-			return [];
+			return null;
+		}
+	}
+
+	async fetchFlowsByUrl(url: string) {
+		try {
+			const response = await request<IFlows>("GET", url);
+			return response.data;
+		} catch (error) {
+			axiosErrorHandler<IFlows[]>((error) => {
+				console.log(error);
+			});
+			return null;
 		}
 	}
 
