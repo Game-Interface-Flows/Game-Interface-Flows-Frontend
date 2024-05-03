@@ -1,7 +1,13 @@
 import AuthService from "../services/AuthService";
 import { RootStore } from "./RootStore";
 import { BaseStore } from "./BaseStore";
-import { computed, makeObservable, observable } from "mobx";
+import {
+	action,
+	computed,
+	makeObservable,
+	observable,
+	runInAction,
+} from "mobx";
 import Cookies from "js-cookie";
 
 export class AuthStore extends BaseStore {
@@ -14,6 +20,8 @@ export class AuthStore extends BaseStore {
 			token: observable,
 			error: observable,
 			isAuthenticated: computed,
+			logoutUser: action,
+			loginUser: action,
 		});
 		this.checkAuth();
 	}
@@ -30,14 +38,19 @@ export class AuthStore extends BaseStore {
 	}
 
 	async loginUser(username: string, password: string) {
+		let fetchedToken: string | null = null;
+
 		try {
-			const token = await AuthService.login(username, password);
-			this.token = token;
-			Cookies.set("token", token, { expires: 7 });
+			fetchedToken = await AuthService.login(username, password);
+			Cookies.set("token", fetchedToken, { expires: 7 });
 			this.error = "";
 		} catch (error) {
-			this.token = null;
+			fetchedToken = null;
 		}
+
+		runInAction(() => {
+			this.token = fetchedToken;
+		});
 	}
 
 	clearError() {
