@@ -2,6 +2,7 @@ import React from "react";
 import { FlowsGrid } from "../components/FlowsGrid";
 import { GenreFilter } from "../components/GenreFilter";
 import { ApplyFilteringBytton } from "../components/ApplyFilteringButton";
+import { PlatformFilter } from "../components/PlatformFilter";
 
 
 
@@ -11,11 +12,11 @@ export function MainPage() {
 			<div className="row">
 				<div className="col-md-3">
 					<div className="row">
-						<h3>Genres</h3>
-						<GenreFilter />
+						<h3>Platforms</h3>
+						<PlatformFilter />
 					</div>
 					<div className="row">
-						<h3>Platforms</h3>
+						<h3>Genres</h3>
 						<GenreFilter />
 					</div>
 					<div className="row container-fluid">

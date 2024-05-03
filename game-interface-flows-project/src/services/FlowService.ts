@@ -7,10 +7,16 @@ import { IFlows } from "../models/flows";
 export class FlowService {
 	path = "/flows";
 
-	async fetchFlows(genres: string[] = []): Promise<IFlowPreview[]> {
+	async fetchFlows(genres: string[] = [], platforms: string[] = []): Promise<IFlowPreview[]> {
 		try {
-			const params = genres.length > 0 ? { genre: genres } : undefined;
-			const response = await request<IFlows, { genre: string[] }>("GET", this.path, { params });
+			const params: { genre?: string[], platform?: string[] } = {};
+			if (genres.length > 0) {
+				params.genre = genres;
+			}
+			if (platforms.length > 0) {
+				params.platform = platforms;
+			}
+			const response = await request<IFlows, typeof params>("GET", this.path, { params });
 			return response.data.results; 
 		} catch (error) {
 			axiosErrorHandler<IFlows[]>(error => {
