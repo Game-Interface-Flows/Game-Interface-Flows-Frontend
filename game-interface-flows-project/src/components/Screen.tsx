@@ -6,20 +6,20 @@ import { AnchorPositionType } from "react-archer/lib/types";
 import { IScreenSharableProperties } from "../models/screen_properties";
 
 interface ScreenProps {
-    screen: IScreen
-	propeties: IScreenSharableProperties
+	screen: IScreen;
+	propeties: IScreenSharableProperties;
 }
 
-export function Frame({screen, propeties}: ScreenProps) {
+export function Frame({ screen, propeties }: ScreenProps) {
 	return (
 		<ArcherElement
 			key={screen.id}
 			id={String(screen.id)}
-			relations={screen.connections_out.map(conn => ({
+			relations={screen.connections_out.map((conn) => ({
 				targetId: String(conn.screen_in),
 				targetAnchor: conn.target_anchor as AnchorPositionType,
 				sourceAnchor: conn.source_anchor as AnchorPositionType,
-				startMarker: conn.bidirectional
+				startMarker: conn.bidirectional,
 			}))}
 		>
 			<img
@@ -31,7 +31,8 @@ export function Frame({screen, propeties}: ScreenProps) {
 					left: screen.position_x * (propeties.width + propeties.offset_x),
 					top: screen.position_y * (propeties.height + propeties.offset_y),
 					width: propeties.width,
-					height: propeties.height}}
+					height: propeties.height,
+				}}
 			/>
 		</ArcherElement>
 	);

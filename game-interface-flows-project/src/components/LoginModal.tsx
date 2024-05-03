@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import ModalOverlay from "./ModalOverlay";
 import { useStore } from "../stores/storeContext";
 
-const LoginModal: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onHide }) => {
+const LoginModal: React.FC<{ show: boolean; onHide: () => void }> = ({
+	show,
+	onHide,
+}) => {
 	const { authStore } = useStore();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleLogin = async () => {
 		await authStore.loginUser(username, password);
-		if (authStore.token) onHide(); 
+		if (authStore.token) onHide();
 	};
-    
+
 	if (!show) return null;
 
 	return (
@@ -24,10 +27,19 @@ const LoginModal: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onH
 							<button type="button" className="btn-close" onClick={onHide}></button>
 						</div>
 						<div className="modal-body">
-							{authStore.error && <div className="alert alert-danger">{authStore.error}</div>}
-							<form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+							{authStore.error && (
+								<div className="alert alert-danger">{authStore.error}</div>
+							)}
+							<form
+								onSubmit={(e) => {
+									e.preventDefault();
+									handleLogin();
+								}}
+							>
 								<div className="mb-3">
-									<label htmlFor="username" className="form-label">Username</label>
+									<label htmlFor="username" className="form-label">
+										Username
+									</label>
 									<input
 										type="text"
 										className="form-control"
@@ -38,7 +50,9 @@ const LoginModal: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onH
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="password" className="form-label">Password</label>
+									<label htmlFor="password" className="form-label">
+										Password
+									</label>
 									<input
 										type="password"
 										className="form-control"
@@ -48,7 +62,9 @@ const LoginModal: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onH
 										required
 									/>
 								</div>
-								<button type="submit" className="btn btn-primary">Log In</button>
+								<button type="submit" className="btn btn-primary">
+									Log In
+								</button>
 							</form>
 						</div>
 					</div>

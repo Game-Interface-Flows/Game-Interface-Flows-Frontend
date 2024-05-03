@@ -1,7 +1,10 @@
 import React from "react";
 import ModalOverlay from "./ModalOverlay";
 
-const SignUpModal: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onHide }) => {
+const SignUpModal: React.FC<{ show: boolean; onHide: () => void }> = ({
+	show,
+	onHide,
+}) => {
 	if (!show) return null;
 
 	return (
@@ -18,8 +21,12 @@ const SignUpModal: React.FC<{ show: boolean; onHide: () => void }> = ({ show, on
 							<p>Sign up form content...</p>
 						</div>
 						<div className="modal-footer">
-							<button type="button" className="btn btn-secondary" onClick={onHide}>Close</button>
-							<button type="button" className="btn btn-primary">Sign Up</button>
+							<button type="button" className="btn btn-secondary" onClick={onHide}>
+								Close
+							</button>
+							<button type="button" className="btn btn-primary">
+								Sign Up
+							</button>
 						</div>
 					</div>
 				</div>

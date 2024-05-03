@@ -13,7 +13,7 @@ export class AuthStore extends BaseStore {
 		makeObservable(this, {
 			token: observable,
 			error: observable,
-			isAuthenticated: computed
+			isAuthenticated: computed,
 		});
 		this.checkAuth();
 	}

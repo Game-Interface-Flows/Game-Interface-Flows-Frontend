@@ -15,13 +15,16 @@ const FlowPage: React.FC = observer(() => {
 			flowsStore.loadCurrentFlowById(parseInt(flowId, 10));
 		}
 	}, [flowId, flowsStore]);
-	
+
 	return (
 		<div className="container-fluid">
 			<div className="row">
 				<div className={`col-md-${showFlowIngo ? "9" : "12"} d-flex p-0`}>
 					<Flow flow={flowsStore.currentFlow} />
-					<button className="btn btn-secondary" onClick={() => setShowFlowInfo(!showFlowIngo)}>
+					<button
+						className="btn btn-secondary"
+						onClick={() => setShowFlowInfo(!showFlowIngo)}
+					>
 						{showFlowIngo ? ">" : "<"}
 					</button>
 				</div>

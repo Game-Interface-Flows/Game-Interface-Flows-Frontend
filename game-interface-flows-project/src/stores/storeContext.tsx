@@ -1,14 +1,16 @@
 import React from "react";
 import { RootStore } from "./RootStore";
 
-export const StoreContext = React.createContext<RootStore | undefined>(undefined);
+export const StoreContext = React.createContext<RootStore | undefined>(
+	undefined
+);
 
-export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
+	children,
+}) => {
 	const rootStore = new RootStore();
 	return (
-		<StoreContext.Provider value={rootStore}>
-			{children}
-		</StoreContext.Provider>
+		<StoreContext.Provider value={rootStore}>{children}</StoreContext.Provider>
 	);
 };
 

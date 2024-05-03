@@ -16,20 +16,22 @@ export abstract class BaseFilterStore<T extends IFilterItem> extends BaseStore {
 			items: observable,
 			selectedItems: observable,
 			toggleItemSelection: action,
-			loadItems: action
+			loadItems: action,
 		});
 	}
 
 	toggleItemSelection(id: number) {
 		if (this.selectedItems.includes(id)) {
-			this.selectedItems = this.selectedItems.filter(item => item !== id);
+			this.selectedItems = this.selectedItems.filter((item) => item !== id);
 		} else {
 			this.selectedItems.push(id);
 		}
 	}
 
 	get selectedItemsNames(): string[] {
-		return this.items.filter(item => this.selectedItems.includes(item.id)).map(item => item.name);
+		return this.items
+			.filter((item) => this.selectedItems.includes(item.id))
+			.map((item) => item.name);
 	}
 
 	async loadItems() {

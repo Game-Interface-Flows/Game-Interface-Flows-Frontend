@@ -19,7 +19,7 @@ export class FlowStore extends BaseStore {
 			currentFlow: observable,
 			isLoading: observable,
 			error: observable,
-			loadFlows: action
+			loadFlows: action,
 		});
 	}
 
@@ -28,7 +28,12 @@ export class FlowStore extends BaseStore {
 		const platforms = this.rootStore.platformsStore.selectedItemsNames;
 		const sort = this.rootStore.sortingStore.getSelectedOptionName();
 		const order = this.rootStore.sortingStore.getSelectedOrder();
-		const fetchedFlows = await this.service.fetchFlows(genres, platforms, sort, order);
+		const fetchedFlows = await this.service.fetchFlows(
+			genres,
+			platforms,
+			sort,
+			order
+		);
 
 		runInAction(() => {
 			this.flows = fetchedFlows;

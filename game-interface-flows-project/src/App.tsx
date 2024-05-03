@@ -11,9 +11,7 @@ function App() {
 			<StoreProvider>
 				<Router>
 					<Navbar />
-					<Routes>
-						{createRoutes()}
-					</Routes>
+					<Routes>{createRoutes()}</Routes>
 				</Router>
 			</StoreProvider>
 		</>

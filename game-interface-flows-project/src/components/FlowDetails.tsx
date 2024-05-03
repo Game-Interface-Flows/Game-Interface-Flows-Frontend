@@ -5,10 +5,10 @@ import { IFlow } from "../models/flow";
 import { Comment } from "./Comment";
 
 interface FlowDetailsProps {
-    flow: IFlow | null
-} 
+	flow: IFlow | null;
+}
 
-export function FlowDetails({flow}: FlowDetailsProps) {
+export function FlowDetails({ flow }: FlowDetailsProps) {
 	return (
 		<div className="container-fluid p-1">
 			<h3>{flow?.title}</h3>

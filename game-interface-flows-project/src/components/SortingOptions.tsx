@@ -21,7 +21,7 @@ export const SortingOptions: React.FC = observer(() => {
 					value={sortingStore.selectedOptionId}
 					onChange={handleSortingChange}
 				>
-					{sortingStore.options.map(option => (
+					{sortingStore.options.map((option) => (
 						<option key={option.id} value={option.id}>
 							{option.name}
 						</option>
@@ -29,10 +29,7 @@ export const SortingOptions: React.FC = observer(() => {
 				</select>
 			</div>
 			<div className="row">
-				<button
-					className="btn btn-outline-secondary"
-					onClick={toggleSortDirection}
-				>
+				<button className="btn btn-outline-secondary" onClick={toggleSortDirection}>
 					{sortingStore.isAscending ? "↓" : "↑"}
 				</button>
 			</div>

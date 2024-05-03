@@ -5,8 +5,6 @@ import { ApplyFilteringBytton } from "../components/ApplyFilteringButton";
 import { PlatformFilter } from "../components/PlatformFilter";
 import { SortingOptions } from "../components/SortingOptions";
 
-
-
 export function MainPage() {
 	return (
 		<div className="container-fluid">

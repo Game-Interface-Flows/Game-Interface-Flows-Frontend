@@ -7,7 +7,7 @@ export class SortingStore extends BaseStore {
 	options: ISortingOption[] = [
 		{ id: 1, name: "date" },
 		{ id: 2, name: "likes" },
-		{ id: 3, name: "title" }
+		{ id: 3, name: "title" },
 	];
 	selectedOptionId = 1;
 	isAscending = true;
@@ -21,7 +21,7 @@ export class SortingStore extends BaseStore {
 			setSelectedOptionId: action,
 			toggleSortDirection: action,
 			getSelectedOptionName: action,
-			getSelectedOrder: action
+			getSelectedOrder: action,
 		});
 	}
 
@@ -34,7 +34,9 @@ export class SortingStore extends BaseStore {
 	}
 
 	getSelectedOptionName(): string {
-		const selectedOption = this.options.find(option => option.id === this.selectedOptionId);
+		const selectedOption = this.options.find(
+			(option) => option.id === this.selectedOptionId
+		);
 		return selectedOption ? selectedOption.name : "";
 	}
 
