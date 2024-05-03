@@ -1,3 +1,4 @@
+import { IComment } from "./comment";
 import { IScreen } from "./screen";
 import { IScreenSharableProperties } from "./screen_properties";
 
@@ -6,5 +7,6 @@ export interface IFlow {
     title: string,
     description: string,
     screens: [IScreen],
-    screens_properties: IScreenSharableProperties
+    screens_properties: IScreenSharableProperties,
+    comments: [IComment]
 }

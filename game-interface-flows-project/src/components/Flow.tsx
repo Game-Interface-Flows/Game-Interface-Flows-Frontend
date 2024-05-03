@@ -38,7 +38,7 @@ export function Flow({flow}: FlowContentProps)  {
 				maxScale={3}
 				limitToBounds={false}>
 				<TransformComponent>
-					<ArcherContainer strokeColor="black" strokeWidth={2} noCurves={true}>
+					<ArcherContainer strokeColor="black" strokeWidth={3} noCurves={true}>
 						<div style={{ width: `${dimensions.width}px`, height: `${dimensions.height}px` }}>
 							{flow?.screens.map(screen => (
 								<Frame
