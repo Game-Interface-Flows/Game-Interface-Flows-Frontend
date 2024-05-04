@@ -10,7 +10,7 @@ interface FlowProps {
 }
 
 export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
-	const { flowsStore } = useStore();
+	const { flowsStore, authStore } = useStore();
 
 	const handleButtonClick = (
 		event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -57,6 +57,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 									<button
 										className={`btn-custom btn-custom-primary w-100 ${flow.is_liked ? "btn-liked" : ""}`}
 										onClick={handleButtonClick}
+										disabled={!authStore.token}
 									>
 										Likes: {flow.total_likes}
 									</button>

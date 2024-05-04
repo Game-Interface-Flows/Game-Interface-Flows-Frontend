@@ -4,12 +4,12 @@ import { FlowPreview } from "../components/FlowPreview";
 import { useStore } from "../stores/storeContext";
 
 export const FlowsGrid: React.FC = observer(() => {
-	const { flowsStore } = useStore();
+	const { flowsStore, authStore } = useStore();
 	const loaderRef = useRef(null);
 
 	useEffect(() => {
 		flowsStore.loadFlows();
-	}, [flowsStore]);
+	}, [flowsStore, authStore.token]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(

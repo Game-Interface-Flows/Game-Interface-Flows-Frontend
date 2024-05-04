@@ -36,6 +36,12 @@ body {
 	border: 2px var(--secondary-border-style) #212529;
 }
 
+.btn-custom-primary:disabled {
+	background-color: #212529 !important;
+	border-color: #212529 !important;
+	color: white !important;
+}
+
 .card-body {
 	overflow: hidden;
 }
