@@ -1,25 +1,20 @@
-import { GenreStore } from "./GenreStore";
-import { FlowStore } from "./FlowStore";
-import { AuthStore } from "./AuthStore";
-import { PlatformStore } from "./PlatformStore";
-import { SortingStore } from "./SortingStore";
-import { ToastStore } from "./ToastStore";
+import { BaseStore } from "./BaseStore";
+import { storeConfig } from "./storeConfig";
 
 export class RootStore {
-	genresStore: GenreStore;
-	platformsStore: PlatformStore;
-	sortingStore: SortingStore;
-	flowsStore: FlowStore;
-	authStore: AuthStore;
-	toastStore: ToastStore;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[key: string]: BaseStore | any;
 
 	constructor() {
-		this.genresStore = new GenreStore(this);
-		this.platformsStore = new PlatformStore(this);
-		this.sortingStore = new SortingStore(this);
-		this.flowsStore = new FlowStore(this);
-		this.authStore = new AuthStore(this);
-		this.toastStore = new ToastStore(this);
+		this.registerStores(storeConfig);
+	}
+
+	private registerStores(
+		stores: Record<string, new (root: RootStore) => BaseStore>
+	) {
+		Object.keys(stores).forEach((storeKey) => {
+			this[storeKey] = new stores[storeKey](this);
+		});
 	}
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { FlowPreview } from "../components/FlowPreview";
 import { useStore } from "../stores/storeContext";
+import { IFlowPreview } from "../models/flow_preview";
 
 export const FlowsGrid: React.FC = observer(() => {
 	const { flowsStore, authStore } = useStore();
@@ -35,7 +36,7 @@ export const FlowsGrid: React.FC = observer(() => {
 	return (
 		<>
 			<div className="row row-cols-1 row-cols-md-2 g-4">
-				{flowsStore.flows.map((flow) => (
+				{flowsStore.flows.map((flow: IFlowPreview) => (
 					<div key={flow.id} className="col">
 						<FlowPreview flow={flow} />
 					</div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../stores/storeContext";
+import { ISortingOption } from "../models/sorting_option";
 
 export const SortingOptions: React.FC = observer(() => {
 	const { sortingStore } = useStore();
@@ -21,7 +22,7 @@ export const SortingOptions: React.FC = observer(() => {
 					value={sortingStore.selectedOptionId}
 					onChange={handleSortingChange}
 				>
-					{sortingStore.options.map((option) => (
+					{sortingStore.options.map((option: ISortingOption) => (
 						<option key={option.id} value={option.id}>
 							{option.name}
 						</option>
