@@ -3,6 +3,7 @@ import { FlowStore } from "./FlowStore";
 import { AuthStore } from "./AuthStore";
 import { PlatformStore } from "./PlatformStore";
 import { SortingStore } from "./SortingStore";
+import { ToastStore } from "./ToastStore";
 
 export class RootStore {
 	genresStore: GenreStore;
@@ -10,6 +11,7 @@ export class RootStore {
 	sortingStore: SortingStore;
 	flowsStore: FlowStore;
 	authStore: AuthStore;
+	toastStore: ToastStore;
 
 	constructor() {
 		this.genresStore = new GenreStore(this);
@@ -17,6 +19,7 @@ export class RootStore {
 		this.sortingStore = new SortingStore(this);
 		this.flowsStore = new FlowStore(this);
 		this.authStore = new AuthStore(this);
+		this.toastStore = new ToastStore(this);
 	}
 }
 

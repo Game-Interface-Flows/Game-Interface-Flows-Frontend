@@ -132,3 +132,12 @@ body {
 .extra-space {
 	padding-left: 0.25rem;
 }
+
+.toast {
+	border: var(--bs-toast-border-width) solid var(--primary-custom-color) !important;
+	background-color: white !important;
+}
+
+.toast-header {
+	border-bottom: var(--bs-toast-border-width) dashed var(--secondary-custom-color) !important;
+}

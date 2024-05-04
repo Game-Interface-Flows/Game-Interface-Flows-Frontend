@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes } from "react-router-dom";
 import { createRoutes } from "./routes/RouteFactory";
 import { StoreProvider } from "./stores/storeContext";
 import Navbar from "./components/Navbar";
+import CookieConsentToast from "./components/CookieConsentToast";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Router>
 					<Navbar />
 					<Routes>{createRoutes()}</Routes>
+					<CookieConsentToast />
 				</Router>
 			</StoreProvider>
 		</>
