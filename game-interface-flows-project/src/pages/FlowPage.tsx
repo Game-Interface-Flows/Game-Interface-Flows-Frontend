@@ -17,24 +17,26 @@ const FlowPage: React.FC = observer(() => {
 	}, [flowId, flowsStore]);
 
 	return (
-		<div className="container-fluid">
-			<div className="row">
-				<div className={`col-md-${showFlowIngo ? "9" : "12"} d-flex p-0`}>
-					<Flow flow={flowsStore.currentFlow} />
-					<button
-						className="btn-custom btn-custom-primary"
-						onClick={() => setShowFlowInfo(!showFlowIngo)}
-					>
-						{showFlowIngo ? ">" : "<"}
-					</button>
-				</div>
-				{showFlowIngo && (
-					<div className="col-md-3 d-flex">
-						<FlowDetails flow={flowsStore.currentFlow} />
+		<>
+			<div className="container-fluid">
+				<div className="row">
+					<div className={`col-md-${showFlowIngo ? "9" : "12"} d-flex p-0`}>
+						<Flow flow={flowsStore.currentFlow} />
+						<button
+							className="btn-custom btn-custom-primary"
+							onClick={() => setShowFlowInfo(!showFlowIngo)}
+						>
+							{showFlowIngo ? ">" : "<"}
+						</button>
 					</div>
-				)}
+					{showFlowIngo && (
+						<div className="col-md-3 d-flex">
+							<FlowDetails flow={flowsStore.currentFlow} />
+						</div>
+					)}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 });
 

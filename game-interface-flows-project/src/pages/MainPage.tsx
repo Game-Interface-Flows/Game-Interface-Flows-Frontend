@@ -26,7 +26,7 @@ export function MainPage() {
 						<ApplyFilteringBytton />
 					</div>
 				</div>
-				<div className="col-md-9 py-2 pe-4">
+				<div className="col-md-9 py-2 pe-3">
 					<h3 className="text-uppercase pt-1">Flows</h3>
 					<FlowsGrid />
 				</div>

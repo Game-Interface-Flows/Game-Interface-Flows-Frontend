@@ -175,3 +175,11 @@ body {
 .badge {
 	border-radius: 0px !important;
 }
+
+footer {
+	border-top: 2px var(--primary-custom-color) dotted;
+}
+
+.navbar {
+	border-bottom: 2px var(--primary-custom-color) dotted;
+}

@@ -23,21 +23,22 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 
 	return (
 		<div className="card h-100 rounded-0">
-			<div className="row h-100 g-0">
-				<div className="col-md-6 h-100 overflow-hidden">
-					<div className="w-100 overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
-						<img
-							src={flow.flow_thumbnail_url}
-							className="img-fluid h-100 object-fit-cover overflow-hidden"
-							alt={flow.title}
-						/>
+			<Link
+				className="h-100"
+				to={`/flows/${flow.id}`}
+				style={{ textDecoration: "none", color: "inherit" }}
+			>
+				<div className="row h-100 g-0">
+					<div className="col-6 h-100 overflow-hidden">
+						<div className="w-100 overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
+							<img
+								src={flow.flow_thumbnail_url}
+								className="img-fluid h-100 object-fit-cover overflow-hidden"
+								alt={flow.title}
+							/>
+						</div>
 					</div>
-				</div>
-				<div className="col-md-6 h-100">
-					<Link
-						to={`/flows/${flow.id}`}
-						style={{ textDecoration: "none", color: "inherit" }}
-					>
+					<div className="col-6 h-100">
 						<div className="card-body h-100 d-flex flex-column p-2">
 							<div className="row flex-fill">
 								<h5 className="card-title mb-0">{flow.title}</h5>
@@ -64,9 +65,9 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 								</div>
 							</div>
 						</div>
-					</Link>
+					</div>
 				</div>
-			</div>
+			</Link>
 		</div>
 	);
 });

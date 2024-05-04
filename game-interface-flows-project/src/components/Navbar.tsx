@@ -16,9 +16,9 @@ const Navbar: React.FC = observer(() => {
 	const isRoot = location.pathname === "/";
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 			<div className="container-fluid px-3 py-1">
-				<div className="col-4 d-flex align-items-center justify-content-start">
+				<div className="col-sm-12 col-md-4 d-flex align-items-center justify-content-start">
 					{!isRoot && (
 						<Link to="/">
 							<button className="btn-custom btn-custom-primary me-2">Home</button>
@@ -27,7 +27,7 @@ const Navbar: React.FC = observer(() => {
 					{authStore.isAuthenticated && (
 						<>
 							<button
-								className="btn-custom btn-custom-primary me-2"
+								className="btn-custom btn-custom-primary"
 								onClick={() => setShowFlow(true)}
 							>
 								New Flow
@@ -36,14 +36,14 @@ const Navbar: React.FC = observer(() => {
 						</>
 					)}
 				</div>
-				<div className="col-4 d-flex justify-content-center">
+				<div className="d-none d-md-flex col-md-4 align-items-center justify-content-center">
 					<Link className="navbar-brand text-uppercase" to="/">
 						<b>
 							Game Interface Flows<sup className="text-lowercase">β</sup>
 						</b>
 					</Link>
 				</div>
-				<div className="col-4 d-flex justify-content-end">
+				<div className="col-sm-12 col-md-4 d-flex align-items-center justify-content-end">
 					{!authStore.isAuthenticated ? (
 						<>
 							<button
@@ -64,7 +64,7 @@ const Navbar: React.FC = observer(() => {
 						</>
 					) : (
 						<button
-							className="btn-custom btn-custom-primary me-2"
+							className="btn-custom btn-custom-primary"
 							onClick={() => authStore.logoutUser()}
 						>
 							Log out

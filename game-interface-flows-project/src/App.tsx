@@ -5,6 +5,7 @@ import { createRoutes } from "./routes/RouteFactory";
 import { StoreProvider } from "./stores/storeContext";
 import Navbar from "./components/Navbar";
 import CookieConsentToast from "./components/CookieConsentToast";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 					<Navbar />
 					<Routes>{createRoutes()}</Routes>
 					<CookieConsentToast />
+					<Footer />
 				</Router>
 			</StoreProvider>
 		</>
