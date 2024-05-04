@@ -42,6 +42,7 @@ body {
 
 .card {
 	border: 2px var(--primary-border-style) var(--primary-custom-color) !important;
+	max-height: 200px !important;
 }
 
 .card:hover {
@@ -139,5 +140,32 @@ body {
 }
 
 .toast-header {
-	border-bottom: var(--bs-toast-border-width) dashed var(--secondary-custom-color) !important;
+	border-bottom: var(--bs-toast-border-width) dashed
+		var(--secondary-custom-color) !important;
+}
+
+.bg-custom-primary {
+	background-color: #212529;
+}
+
+.btn-liked {
+	background-color: #212529;
+	border-color: #212529;
+	color: white;
+}
+
+.btn-liked:focus,
+.btn-liked:hover {
+	border-color: white;
+}
+
+.btn-liked:active {
+	border-color: black;
+	border-style: solid;
+	background-color: white;
+	color: black;
+}
+
+.badge {
+	border-radius: 0px !important;
 }

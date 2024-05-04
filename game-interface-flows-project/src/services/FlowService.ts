@@ -2,6 +2,7 @@ import { axiosErrorHandler } from "../api/error";
 import request from "../api/request";
 import { IFlow } from "../models/flow";
 import { IFlows } from "../models/flows";
+import { ILike } from "../models/like";
 
 export class FlowService {
 	path = "/flows";
@@ -66,6 +67,20 @@ export class FlowService {
 				console.log(error);
 			});
 			throw new Error("Failed to fetch flow");
+		}
+	}
+
+	async fetchFlowLike(flowId: number, like: boolean): Promise<ILike> {
+		const method = like ? "POST" : "DELETE";
+
+		try {
+			const response = await request<ILike>(method, `/flows/${flowId}/likes/`);
+			return response.data;
+		} catch (error) {
+			axiosErrorHandler<ILike>((error) => {
+				console.log(error);
+			});
+			throw new Error("Failed to like/dislike flow");
 		}
 	}
 }

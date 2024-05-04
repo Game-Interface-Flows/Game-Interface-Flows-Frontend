@@ -84,6 +84,18 @@ export class FlowStore extends BaseStore {
 		});
 	};
 
+	likeFlow = async (flowId: number, like: boolean) => {
+		const fetchedLike = await this.service.fetchFlowLike(flowId, like);
+
+		runInAction(() => {
+			const flow = this.flows.find((f) => f.id === flowId);
+			if (flow) {
+				flow.total_likes = fetchedLike.total_likes;
+				flow.is_liked = like;
+			}
+		});
+	};
+
 	loadCurrentFlowById = async (flowId: number) => {
 		const fetchedFlow = await this.service.fetchFlowById(flowId);
 
