@@ -46,6 +46,10 @@ body {
 	overflow: hidden;
 }
 
+.card-border {
+	border-left: 2px var(--primary-border-style) var(--primary-custom-color) !important;
+}
+
 .card {
 	border: 2px var(--primary-border-style) var(--primary-custom-color) !important;
 	max-height: 200px !important;

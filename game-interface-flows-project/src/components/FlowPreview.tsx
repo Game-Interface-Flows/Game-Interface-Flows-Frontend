@@ -30,18 +30,28 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 			>
 				<div className="row h-100 g-0">
 					<div className="col-6 h-100 overflow-hidden">
-						<div className="w-100 overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
+						<div style={{ aspectRatio: "1 / 1" }}>
 							<img
 								src={flow.flow_thumbnail_url}
-								className="img-fluid h-100 object-fit-cover overflow-hidden"
+								className="h-100 w-100 object-fit-cover"
 								alt={flow.title}
 							/>
 						</div>
 					</div>
 					<div className="col-6 h-100">
-						<div className="card-body h-100 d-flex flex-column p-2">
+						<div className="card-body card-border h-100 d-flex flex-column p-2">
 							<div className="row flex-fill">
 								<h5 className="card-title mb-0">{flow.title}</h5>
+								<div>
+									{flow.platforms.map((platform) => (
+										<span
+											key={platform.id}
+											className="badge bg-custom-primary me-1 text-uppercase"
+										>
+											{platform.name}
+										</span>
+									))}
+								</div>
 								<div>
 									{flow.genres.map((genre) => (
 										<span
