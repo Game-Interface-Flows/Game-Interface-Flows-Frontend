@@ -9,10 +9,12 @@ import {
 	runInAction,
 } from "mobx";
 import Cookies from "js-cookie";
+import { IToken } from "../models/token";
+import axios from "axios";
 
 export class AuthStore extends BaseStore {
 	token: string | null = null;
-	error = "";
+	error: string | null = null;
 
 	constructor(rootStore: RootStore) {
 		super(rootStore);
@@ -22,6 +24,7 @@ export class AuthStore extends BaseStore {
 			isAuthenticated: computed,
 			logoutUser: action,
 			loginUser: action,
+			clearError: action,
 		});
 		this.checkAuth();
 	}
@@ -37,21 +40,24 @@ export class AuthStore extends BaseStore {
 		}
 	}
 
-	async loginUser(username: string, password: string) {
-		let fetchedToken: string | null = null;
+	loginUser = async (username: string, password: string) => {
+		let fetchedToken: IToken;
 
 		try {
 			fetchedToken = await AuthService.login(username, password);
-			Cookies.set("token", fetchedToken, { expires: 7 });
-			this.error = "";
-		} catch (error) {
-			fetchedToken = null;
+			Cookies.set("token", fetchedToken.token, { expires: 7 });
+			this.error = null;
+			runInAction(() => {
+				this.token = fetchedToken.token;
+			});
+		} catch (error: unknown) {
+			runInAction(() => {
+				if (axios.isAxiosError(error)) {
+					this.error = error.response?.data.details;
+				}
+			});
 		}
-
-		runInAction(() => {
-			this.token = fetchedToken;
-		});
-	}
+	};
 
 	clearError() {
 		this.error = "";

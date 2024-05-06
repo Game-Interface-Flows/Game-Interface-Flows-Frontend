@@ -150,7 +150,7 @@ body {
 }
 
 .toast-header {
-	border-bottom: var(--bs-toast-border-width) dashed
+	border-bottom: var(--bs-toast-border-width) var(--secondary-border-style)
 		var(--secondary-custom-color) !important;
 }
 
@@ -186,4 +186,27 @@ footer {
 
 .navbar {
 	border-bottom: 2px var(--primary-custom-color) dotted;
+}
+
+.modal-content {
+	border-radius: 0px !important;
+	border: 2px var(--primary-custom-color) var(--primary-custom-color) !important;
+}
+
+.modal-header {
+	border-bottom: 2px var(--secondary-custom-color) dotted !important;
+}
+
+.modal-footer {
+	border-top: 2px var(--secondary-custom-color) dotted !important;
+}
+
+.alert {
+	border-radius: 0px !important;
+	border: 2px var(--bs-red) var(--secondary-border-style) !important;
+}
+
+.alert-danger {
+	background-color: white !important;
+	color: var(--bs-red) !important;
 }
