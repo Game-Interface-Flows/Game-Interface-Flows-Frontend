@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { IFlow } from "../models/flow";
-import { ArcherContainer } from "react-archer";
+import { ArcherContainer, ArcherContainerRef } from "react-archer";
 import { Frame } from "./Screen";
 
 interface FlowContentProps {
@@ -34,11 +34,41 @@ export function Flow({ flow }: FlowContentProps) {
 		setDimensions({ width: maxWidth, height: maxHeight });
 	}, [flow]);
 
+	const archerContainerRef = useRef<ArcherContainerRef>(null);
+	const containerRef = useRef(null);
+
+	useEffect(() => {
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				if (archerContainerRef.current) {
+					console.log("???");
+					archerContainerRef.current.refreshScreen();
+				}
+			}
+		});
+
+		if (containerRef.current) {
+			resizeObserver.observe(containerRef.current);
+		}
+
+		return () => {
+			resizeObserver.disconnect();
+		};
+	}, []);
+
 	return (
-		<div className="viewport-container flow-background overflow-hidden">
+		<div
+			ref={containerRef}
+			className="viewport-container flow-background overflow-hidden"
+		>
 			<TransformWrapper minScale={0.1} maxScale={3} limitToBounds={false}>
 				<TransformComponent>
-					<ArcherContainer strokeColor="black" strokeWidth={3} noCurves={true}>
+					<ArcherContainer
+						ref={archerContainerRef}
+						strokeColor="black"
+						strokeWidth={3}
+						noCurves={true}
+					>
 						<div
 							style={{
 								width: `${dimensions.width}px`,
