@@ -21,6 +21,7 @@ export const SortingOptions: React.FC = observer(() => {
 					className="form-control text-uppercase h-100"
 					value={sortingStore.selectedOptionId}
 					onChange={handleSortingChange}
+					aria-label="Choose a sorting option."
 				>
 					{sortingStore.options.map((option: ISortingOption) => (
 						<option key={option.id} value={option.id}>

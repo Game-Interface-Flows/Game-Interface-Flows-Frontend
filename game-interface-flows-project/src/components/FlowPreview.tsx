@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IFlowPreview } from "../models/flow_preview";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../stores/storeContext";
+import { Helmet } from "react-helmet";
 
 interface FlowProps {
 	flow: IFlowPreview;
@@ -23,6 +24,9 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 
 	return (
 		<div className="card h-100 rounded-0">
+			<Helmet>
+				<link rel="preconnect" href="http://storage.yandexcloud.net" />
+			</Helmet>
 			<Link
 				className="h-100"
 				to={`/flows/${flow.id}`}
@@ -32,6 +36,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 					<div className="col-6 h-100 overflow-hidden">
 						<div style={{ aspectRatio: "1 / 1" }}>
 							<img
+								loading="lazy"
 								src={flow.flow_thumbnail_url}
 								className="h-100 w-100 object-fit-cover"
 								alt={flow.title}
@@ -41,7 +46,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 					<div className="col-6 h-100">
 						<div className="card-body card-border h-100 d-flex flex-column p-2">
 							<div className="row flex-fill">
-								<h5 className="card-title mb-0">{flow.title}</h5>
+								<p className="card-title mb-0 fs-4 fw-bold">{flow.title}</p>
 								<div>
 									{flow.platforms.map((platform) => (
 										<span
