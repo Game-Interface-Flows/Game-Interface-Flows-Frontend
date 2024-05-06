@@ -74,7 +74,7 @@ export class FlowStore extends BaseStore {
 				this.flows = [...this.flows, ...fetchedFlows.results];
 				this.nextUrl = fetchedFlows.next;
 			} else {
-				this.error = "Failed to fetch more books.";
+				this.error = "Failed to fetch more flows.";
 			}
 			this.isLoading = false;
 			if (this.isPending) {
