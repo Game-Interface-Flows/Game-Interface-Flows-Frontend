@@ -2,9 +2,9 @@ import "./SpaceElement";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles.css";
+import "./styles/styles.css";
 import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/custom.css";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement

@@ -23,7 +23,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 	};
 
 	return (
-		<div className="card h-100 rounded-0">
+		<div className="card h-100">
 			<Helmet>
 				<link rel="preconnect" href="http://storage.yandexcloud.net" />
 			</Helmet>
@@ -33,7 +33,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 				style={{ textDecoration: "none", color: "inherit" }}
 			>
 				<div className="row h-100 g-0">
-					<div className="col-6 h-100 overflow-hidden">
+					<div className="col-6 h-100 rounded-start overflow-hidden">
 						<div style={{ aspectRatio: "1 / 1" }}>
 							<img
 								loading="lazy"
@@ -46,7 +46,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 					<div className="col-6 h-100">
 						<div className="card-body card-border h-100 d-flex flex-column p-2">
 							<div className="row flex-fill">
-								<p className="card-title mb-0 fs-4 fw-bold">{flow.title}</p>
+								<p className="card-title mb-0 fs-5 fw-bold">{flow.title}</p>
 								<div>
 									{flow.platforms.map((platform) => (
 										<span
@@ -71,7 +71,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
 							<div className="row flex-fill align-items-end">
 								<div>
 									<button
-										className={`btn-custom btn-custom-primary w-100 ${flow.is_liked ? "btn-liked" : ""}`}
+										className={`btn w-100 ${flow.is_liked ? "btn-primary" : "btn-outline-primary"}`}
 										onClick={handleButtonClick}
 										disabled={!authStore.token}
 									>

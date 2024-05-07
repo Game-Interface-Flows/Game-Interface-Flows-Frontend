@@ -10,9 +10,10 @@ interface FlowDetailsProps {
 
 export function FlowDetails({ flow }: FlowDetailsProps) {
 	return (
-		<div className="container-fluid p-1">
-			<h3>{flow?.title}</h3>
-			<p>{flow?.description}</p>
+		<div className="container-fluid bg-dark py-3">
+			<h2 className="text-white text-uppercase">{flow?.title}</h2>
+			<p className="text-white">{flow?.description}</p>
+			<h2 className="text-white text-uppercase">comments</h2>
 			<div className="row d-flex justify-content-center">
 				<div className="col-12">
 					{flow?.comments.map((comment) => (

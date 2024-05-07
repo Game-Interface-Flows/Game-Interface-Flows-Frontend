@@ -71,7 +71,7 @@ const LoginModal: React.FC<LoginModalProps> = observer(({ show, onHide }) => {
 								)}
 							</div>
 							<div className="modal-footer">
-								<button type="submit" className="btn-custom btn-custom-primary">
+								<button type="submit" className="btn btn-primary">
 									Log In
 								</button>
 							</div>

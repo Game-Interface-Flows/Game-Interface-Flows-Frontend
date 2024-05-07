@@ -23,7 +23,7 @@ const CookieConsentToast: React.FC = observer(() => {
 					service work correctly.
 					<div className="mt-2">
 						<button
-							className="btn-custom btn-custom-primary w-100"
+							className="btn btn-primary w-100"
 							onClick={toastStore.acceptCookies}
 						>
 							OK

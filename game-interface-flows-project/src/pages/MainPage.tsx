@@ -7,8 +7,8 @@ import { SortingOptions } from "../components/SortingOptions";
 
 export function MainPage() {
 	return (
-		<div className="container-fluid min-vh-100">
-			<div className="row">
+		<div className="container-fluid">
+			<div className="row min-vh-100">
 				<div className="col-md-3 py-2 flow-background">
 					<div className="row px-3 py-1">
 						<h3 className="text-uppercase p-0 bg-white">Order</h3>

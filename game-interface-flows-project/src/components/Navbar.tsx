@@ -21,15 +21,12 @@ const Navbar: React.FC = observer(() => {
 				<div className="col-sm-12 col-md-4 d-flex align-items-center justify-content-start">
 					{!isRoot && (
 						<Link to="/">
-							<button className="btn-custom btn-custom-primary me-2">Home</button>
+							<button className="btn btn-outline-primary me-2">Home</button>
 						</Link>
 					)}
 					{authStore.isAuthenticated && (
 						<>
-							<button
-								className="btn-custom btn-custom-primary"
-								onClick={() => setShowFlow(true)}
-							>
+							<button className="btn btn-primary" onClick={() => setShowFlow(true)}>
 								New Flow
 							</button>
 							<FlowModal show={showFlow} onHide={() => setShowFlow(false)} />
@@ -39,7 +36,8 @@ const Navbar: React.FC = observer(() => {
 				<div className="d-none d-md-flex col-md-4 align-items-center justify-content-center">
 					<Link className="navbar-brand text-uppercase" to="/">
 						<b>
-							Game Interface Flows<sup className="text-lowercase">β</sup>
+							Game <span className="primary-text">Interface</span> Flows
+							<sup className="text-lowercase primary-text">β</sup>
 						</b>
 					</Link>
 				</div>
@@ -47,24 +45,21 @@ const Navbar: React.FC = observer(() => {
 					{!authStore.isAuthenticated ? (
 						<>
 							<button
-								className="btn-custom btn-custom-primary me-2"
+								className="btn btn-outline-primary me-2"
 								onClick={() => setShowSignUp(true)}
 							>
 								Sign Up
 							</button>
 							<SignUpModal show={showSignUp} onHide={() => setShowSignUp(false)} />
 
-							<button
-								className="btn-custom btn-custom-primary"
-								onClick={() => setShowLogin(true)}
-							>
+							<button className="btn btn-primary" onClick={() => setShowLogin(true)}>
 								Log In
 							</button>
 							<LoginModal show={showLogin} onHide={() => setShowLogin(false)} />
 						</>
 					) : (
 						<button
-							className="btn-custom btn-custom-primary"
+							className="btn btn-outline-primary"
 							onClick={() => authStore.logoutUser()}
 						>
 							Log out

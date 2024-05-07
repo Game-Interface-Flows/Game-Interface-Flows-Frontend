@@ -32,7 +32,7 @@ export const SortingOptions: React.FC = observer(() => {
 			</div>
 			<div className="col-6 p-0 ps-1">
 				<button
-					className="btn-custom btn-custom-primary w-100"
+					className="btn btn-outline-primary w-100"
 					onClick={toggleSortDirection}
 				>
 					{sortingStore.isAscending ? "↓" : "↑"}
