@@ -6,8 +6,10 @@ interface TitleProps {
 }
 
 export const PageTitleWrapper: React.FC<TitleProps> = ({ title, children }) => {
+    const maintTitle = "Game Interface Flows";
+
     useEffect(() => {
-        document.title = `${document.title} — ${title}`;
+        document.title = `${maintTitle} — ${title}`;
     }, [title]);
 
     return <>{children}</>;
