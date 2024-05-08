@@ -12,8 +12,6 @@ const api = axios.create({
     baseURL: `http://${apiUrl}/api/`,
 });
 
-console.log(`http://${apiUrl}/api/`);
-
 interface RequestOptions<
     P = Record<string, unknown>,
     B = Record<string, unknown>,
