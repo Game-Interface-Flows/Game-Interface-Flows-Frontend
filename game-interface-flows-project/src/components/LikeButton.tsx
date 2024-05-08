@@ -10,13 +10,15 @@ interface FlowProps {
 export const LikeButton: React.FC<FlowProps> = observer(({ flow }) => {
     const { flowsStore, authStore } = useStore();
 
-    const handleButtonClick = (
+    const handleButtonClick = async (
         event: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
         event.preventDefault();
         event.stopPropagation();
 
-        flowsStore.likeFlow(flow.id, !flow.is_liked);
+        const likeData = await flowsStore.likeFlow(flow.id, !flow.is_liked);
+        flow.total_likes = likeData.total_likes;
+        flow.is_liked = !flow.is_liked;
     };
 
     return (

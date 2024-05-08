@@ -4,6 +4,7 @@ import { BaseStore } from "./BaseStore";
 import { action, makeObservable, observable, runInAction } from "mobx";
 import { FlowService } from "../services/FlowService";
 import { IFlow } from "../models/flow";
+import { ILike } from "../models/like";
 
 export class FlowStore extends BaseStore {
     nextUrl: string | null = "/flows";
@@ -87,16 +88,10 @@ export class FlowStore extends BaseStore {
         });
     };
 
-    likeFlow = async (flowId: number, like: boolean) => {
+    likeFlow = async (flowId: number, like: boolean): Promise<ILike> => {
         const fetchedLike = await this.service.fetchFlowLike(flowId, like);
 
-        runInAction(() => {
-            const flow = this.flows.find((f) => f.id === flowId);
-            if (flow) {
-                flow.total_likes = fetchedLike.total_likes;
-                flow.is_liked = like;
-            }
-        });
+        return fetchedLike;
     };
 
     loadCurrentFlowById = async (flowId: number) => {
