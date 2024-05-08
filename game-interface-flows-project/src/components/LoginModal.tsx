@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import ModalOverlay from "./ModalOverlay";
 import { useStore } from "../stores/storeContext";
 import { observer } from "mobx-react-lite";
+import { ModalProps } from "../models/modal";
 
-interface LoginModalProps {
-    show: boolean;
-    onHide: () => void;
-}
-
-const LoginModal: React.FC<LoginModalProps> = observer(({ show, onHide }) => {
+const LoginModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
     const { authStore } = useStore();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
