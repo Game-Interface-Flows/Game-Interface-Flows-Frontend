@@ -118,3 +118,7 @@ body {
 .form-control {
     border-color: var(--bs-primary) !important;
 }
+
+.badge-small {
+    font-size: 0.65em !important;
+}
