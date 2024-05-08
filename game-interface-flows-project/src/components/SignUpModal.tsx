@@ -17,7 +17,9 @@ const SignUpModal: React.FC<{ show: boolean; onHide: () => void }> = ({
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Sign Up</h5>
+                            <h5 className="modal-title text-uppercase">
+                                Sign Up
+                            </h5>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -25,8 +27,12 @@ const SignUpModal: React.FC<{ show: boolean; onHide: () => void }> = ({
                             ></button>
                         </div>
                         <div className="modal-body">
-                            {/* Sign up form goes here */}
-                            <p>Sign up form content...</p>
+                            <div className="alert alert-danger">
+                                <span>
+                                    The service is currently in beta, so public
+                                    registration is not available.
+                                </span>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button
@@ -35,9 +41,6 @@ const SignUpModal: React.FC<{ show: boolean; onHide: () => void }> = ({
                                 onClick={onHide}
                             >
                                 Close
-                            </button>
-                            <button type="button" className="btn btn-primary">
-                                Sign Up
                             </button>
                         </div>
                     </div>

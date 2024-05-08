@@ -86,7 +86,7 @@ const LoginModal: React.FC<LoginModalProps> = observer(({ show, onHide }) => {
                                 </div>
                                 {authStore.error && (
                                     <div className="alert alert-danger">
-                                        {authStore.error}
+                                        <span>{authStore.error}</span>
                                     </div>
                                 )}
                             </div>
