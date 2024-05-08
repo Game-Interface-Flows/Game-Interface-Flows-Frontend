@@ -57,8 +57,9 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
     const thumbnailAllowedFormats = ["image/jpeg", "image/png"];
 
     const navigate = useNavigate();
-
+    const [isLoading, setIsLoading] = useState(false);
     const handleSubmit = async () => {
+        setIsLoading(true);
         const flow = await flowsStore.submitFlow(
             title,
             source,
@@ -68,9 +69,10 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
             selectedGenres,
             selectedPlatforms
         );
-
+        setIsLoading(false);
         if (flow) {
-            navigate(`/flow/${flow.id}`);
+            navigate(`/flows/${flow.id}`);
+            onHide();
         }
     };
 
@@ -293,6 +295,16 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                 >
                                     Submit
                                 </button>
+                                {isLoading && (
+                                    <div
+                                        className="spinner-border align-self-center text-primary"
+                                        role="status"
+                                    >
+                                        <span className="visually-hidden">
+                                            Loading...
+                                        </span>
+                                    </div>
+                                )}
                             </div>
                         </form>
                     </div>
