@@ -39,7 +39,6 @@ export class FlowService {
                     params,
                 }
             );
-            console.log(response.data);
             return response.data;
         } catch (error) {
             axiosErrorHandler<IFlows[]>((error) => {
@@ -54,9 +53,6 @@ export class FlowService {
             const response = await request<IFlows>("GET", url);
             return response.data;
         } catch (error) {
-            axiosErrorHandler<IFlows[]>((error) => {
-                console.log(error);
-            });
             return null;
         }
     }
@@ -64,12 +60,8 @@ export class FlowService {
     async fetchFlowById(flowId: number): Promise<IFlow> {
         try {
             const response = await request<IFlow>("GET", `/flows/${flowId}`);
-            console.log(response.data);
             return response.data;
         } catch (error) {
-            axiosErrorHandler<IFlow>((error) => {
-                console.log(error);
-            });
             throw new Error("Failed to fetch flow");
         }
     }
@@ -84,9 +76,6 @@ export class FlowService {
             );
             return response.data;
         } catch (error) {
-            axiosErrorHandler<ILike>((error) => {
-                console.log(error);
-            });
             throw new Error("Failed to like/dislike flow");
         }
     }

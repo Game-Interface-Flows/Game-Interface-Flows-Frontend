@@ -6,9 +6,13 @@ const getToken = () => {
     return Cookies.get("token");
 };
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const api = axios.create({
-    baseURL: "http://127.0.0.1:8000/api/",
+    baseURL: `http://${apiUrl}/api/`,
 });
+
+console.log(`http://${apiUrl}/api/`);
 
 interface RequestOptions<
     P = Record<string, unknown>,
