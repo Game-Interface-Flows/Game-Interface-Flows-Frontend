@@ -12,6 +12,19 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
     const [video, setVideo] = useState<File | null>(null);
     const [interval, setInterval] = useState(3);
 
+    // video restirctions
+    const videoMaxSize = 500 * 1024 * 1024;
+    const videoAllowedFormats = [
+        "video/mp4",
+        "video/avi",
+        "video/mkv",
+        "video/mov",
+    ];
+
+    // thumbnail restirctions
+    const thumbnailMaxSize = 10 * 1024 * 1024;
+    const thumbnailAllowedFormats = ["image/jpeg", "image/png"];
+
     const handleSubmit = () => {
         console.log({ title, source, thumbnail, video, interval });
         flowsStore.submitFlow();
@@ -96,7 +109,29 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                                 e.target.files &&
                                                 e.target.files.length > 0
                                             ) {
-                                                setThumbnail(e.target.files[0]);
+                                                const file = e.target.files[0];
+
+                                                if (
+                                                    !thumbnailAllowedFormats.includes(
+                                                        file.type
+                                                    )
+                                                ) {
+                                                    alert(
+                                                        "Invalid file format. Please select a photo file (e.g., JPEG, PNG)."
+                                                    );
+                                                    e.target.value = "";
+                                                    setThumbnail(null);
+                                                } else if (
+                                                    file.size > thumbnailMaxSize
+                                                ) {
+                                                    alert(
+                                                        "Thumbnail is too large. Maximum size is 10MB."
+                                                    );
+                                                    e.target.value = "";
+                                                    setThumbnail(null);
+                                                } else {
+                                                    setThumbnail(file);
+                                                }
                                             } else {
                                                 setThumbnail(null);
                                             }
@@ -120,7 +155,29 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                                 e.target.files &&
                                                 e.target.files.length > 0
                                             ) {
-                                                setVideo(e.target.files[0]);
+                                                const file = e.target.files[0];
+
+                                                if (
+                                                    !videoAllowedFormats.includes(
+                                                        file.type
+                                                    )
+                                                ) {
+                                                    alert(
+                                                        "Invalid file format. Please select a video file (e.g., MP4, AVI, MKV, MOV)."
+                                                    );
+                                                    e.target.value = "";
+                                                    setVideo(null);
+                                                } else if (
+                                                    file.size > videoMaxSize
+                                                ) {
+                                                    alert(
+                                                        "Video is too large. Maximum size is 500MB."
+                                                    );
+                                                    e.target.value = "";
+                                                    setVideo(null);
+                                                } else {
+                                                    setVideo(file);
+                                                }
                                             } else {
                                                 setVideo(null);
                                             }
