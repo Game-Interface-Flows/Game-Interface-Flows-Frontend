@@ -41,7 +41,7 @@ export function Flow({ flow }: FlowContentProps) {
             <TransformWrapper
                 minScale={0.1}
                 maxScale={3}
-                initialScale={0.5}
+                initialScale={1}
                 limitToBounds={false}
             >
                 <TransformComponent>
