@@ -44,7 +44,7 @@ const Navbar: React.FC = observer(() => {
                 <div className="d-none d-md-flex col-md-4 align-items-center justify-content-center">
                     <Link className="navbar-brand text-uppercase" to="/">
                         <b>
-                            Game <span className="primary-text">Interface</span>{" "}
+                            Game <span className="text-primary">Interface</span>{" "}
                             Flows
                             <sup className="text-lowercase primary-text">β</sup>
                         </b>

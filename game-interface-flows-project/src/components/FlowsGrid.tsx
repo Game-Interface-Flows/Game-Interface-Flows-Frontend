@@ -45,15 +45,20 @@ export const FlowsGrid: React.FC = observer(() => {
                 ))}
             </div>
             {flowsStore.isLoading && (
-                <div className="d-flex justify-content-center">
-                    <div className="spinner-border mt-5" role="status">
+                <div className="d-flex h-100 justify-content-center">
+                    <div
+                        className="spinner-border align-self-center text-primary"
+                        role="status"
+                    >
                         <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
             )}
-            {isNullOrEmpty && (
-                <div className="d-flex justify-content-center">
-                    <p>no flows :(</p>
+            {isNullOrEmpty && !flowsStore.isLoading && (
+                <div className="d-flex flex-column h-100 justify-content-center">
+                    <p className="text-center">
+                        Strange... no flows are found.
+                    </p>
                 </div>
             )}
             <div ref={loaderRef} />

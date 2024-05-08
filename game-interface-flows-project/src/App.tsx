@@ -12,10 +12,12 @@ function App() {
         <>
             <StoreProvider>
                 <Router>
-                    <Navbar />
-                    <Routes>{createRoutes()}</Routes>
-                    <CookieConsentToast />
-                    <Footer />
+                    <div className="d-flex flex-column min-vh-100">
+                        <Navbar />
+                        <Routes>{createRoutes()}</Routes>
+                        <CookieConsentToast />
+                        <Footer />
+                    </div>
                 </Router>
             </StoreProvider>
         </>

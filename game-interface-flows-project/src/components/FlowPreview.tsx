@@ -46,20 +46,18 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
                     <div className="col-6 h-100">
                         <div className="card-body card-border h-100 d-flex flex-column p-2">
                             <div className="row flex-fill">
-                                <p className="card-title mb-0 fs-5">
+                                <p className="card-title text-uppercase mb-0 fs-5">
                                     {flow.title}
                                 </p>
                                 <div>
                                     {flow.platforms.map((platform) => (
                                         <span
                                             key={platform.id}
-                                            className="badge badge-small bg-custom-primary me-1 text-uppercase"
+                                            className="badge badge-small bg-light text-dark me-1 text-uppercase"
                                         >
                                             {platform.name}
                                         </span>
                                     ))}
-                                </div>
-                                <div>
                                     {flow.genres.map((genre) => (
                                         <span
                                             key={genre.id}
