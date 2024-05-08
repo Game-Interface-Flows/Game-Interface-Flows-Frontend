@@ -21,7 +21,7 @@ const CookieConsentToast: React.FC = observer(() => {
                 <div className="toast-header">
                     <strong className="me-auto">Cookies</strong>
                 </div>
-                <div className="toast-body">
+                <div className="toast-body rounded-bottom">
                     We baked some cookies that you have to accept if you want to
                     make the service work correctly.
                     <div className="mt-2">
