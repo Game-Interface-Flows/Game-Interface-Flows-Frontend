@@ -7,7 +7,7 @@ export const ApplyFilteringBytton: React.FC = observer(() => {
 
     return (
         <button
-            className="btn btn-primary"
+            className="btn btn-primary text-uppercase"
             onClick={() => flowsStore.loadFlows()}
         >
             Apply

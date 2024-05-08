@@ -21,7 +21,7 @@ const Navbar: React.FC = observer(() => {
                 <div className="col-sm-12 col-md-4 d-flex align-items-center justify-content-start">
                     {!isRoot && (
                         <Link to="/">
-                            <button className="btn btn-outline-primary me-2">
+                            <button className="btn btn-outline-primary text-uppercase me-2">
                                 Home
                             </button>
                         </Link>
@@ -29,7 +29,7 @@ const Navbar: React.FC = observer(() => {
                     {authStore.isAuthenticated && (
                         <>
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary text-uppercase"
                                 onClick={() => setShowFlow(true)}
                             >
                                 New Flow
@@ -54,7 +54,7 @@ const Navbar: React.FC = observer(() => {
                     {!authStore.isAuthenticated ? (
                         <>
                             <button
-                                className="btn btn-outline-primary me-2"
+                                className="btn btn-outline-primary text-uppercase me-2"
                                 onClick={() => setShowSignUp(true)}
                             >
                                 Sign Up
@@ -65,7 +65,7 @@ const Navbar: React.FC = observer(() => {
                             />
 
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary text-uppercase"
                                 onClick={() => setShowLogin(true)}
                             >
                                 Log In
@@ -77,7 +77,7 @@ const Navbar: React.FC = observer(() => {
                         </>
                     ) : (
                         <button
-                            className="btn btn-outline-primary"
+                            className="btn btn-outline-primary text-uppercase"
                             onClick={() => authStore.logoutUser()}
                         >
                             Log out
