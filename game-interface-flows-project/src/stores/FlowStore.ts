@@ -103,4 +103,8 @@ export class FlowStore extends BaseStore {
             this.currentFlow = fetchedFlow;
         });
     };
+
+    submitFlow = async () => {
+        return;
+    };
 }
