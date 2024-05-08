@@ -19,7 +19,7 @@ const CookieConsentToast: React.FC = observer(() => {
                 aria-atomic="true"
             >
                 <div className="toast-header">
-                    <strong className="me-auto">Cookies</strong>
+                    <strong className="me-auto text-uppercase text-primary">Cookies</strong>
                 </div>
                 <div className="toast-body rounded-bottom">
                     We baked some cookies that you have to accept if you want to
