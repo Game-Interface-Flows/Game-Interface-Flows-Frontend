@@ -38,7 +38,12 @@ export function Flow({ flow }: FlowContentProps) {
 
     return (
         <div className="viewport-container flow-background overflow-hidden">
-            <TransformWrapper minScale={0.1} maxScale={3} limitToBounds={false}>
+            <TransformWrapper
+                minScale={0.1}
+                maxScale={3}
+                initialScale={0.5}
+                limitToBounds={false}
+            >
                 <TransformComponent>
                     <ArcherContainer
                         strokeColor="black"
