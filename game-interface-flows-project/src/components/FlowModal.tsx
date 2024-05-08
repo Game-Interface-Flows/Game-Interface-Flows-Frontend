@@ -236,7 +236,7 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                         htmlFor="interval"
                                         className="form-label text-uppercase"
                                     >
-                                        Interval ({interval})
+                                        Interval ({interval} sec.)
                                     </label>
                                     <input
                                         type="range"
@@ -256,7 +256,7 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                         <span>10</span>
                                     </div>
                                     <div className="form-text">
-                                        Less interval - more time for processing
+                                        Interval is time between frames to analyze. Less interval - better accuracy but slower processing.
                                     </div>
                                 </div>
                                 <div className="mb-3">
