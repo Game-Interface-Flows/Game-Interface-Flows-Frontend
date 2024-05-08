@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { IFlow } from "../models/flow";
 import { ArcherContainer } from "react-archer";
-import { Frame } from "./Screen";
+import { Screen } from "./Screen";
 
 interface FlowContentProps {
     flow: IFlow | null;
@@ -52,7 +52,7 @@ export function Flow({ flow }: FlowContentProps) {
                             }}
                         >
                             {flow?.screens.map((screen) => (
-                                <Frame
+                                <Screen
                                     key={screen.id}
                                     screen={screen}
                                     propeties={flow.screens_properties}

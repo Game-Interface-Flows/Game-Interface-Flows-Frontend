@@ -10,7 +10,7 @@ interface ScreenProps {
     propeties: IScreenSharableProperties;
 }
 
-export function Frame({ screen, propeties }: ScreenProps) {
+export function Screen({ screen, propeties }: ScreenProps) {
     return (
         <ArcherElement
             key={screen.id}
@@ -19,7 +19,10 @@ export function Frame({ screen, propeties }: ScreenProps) {
                 targetId: String(conn.screen_in),
                 targetAnchor: conn.target_anchor as AnchorPositionType,
                 sourceAnchor: conn.source_anchor as AnchorPositionType,
-                startMarker: conn.bidirectional,
+                style: {
+                    endMarker: true,
+                    startMarker: conn.bidirectional,
+                },
             }))}
         >
             <img
