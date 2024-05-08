@@ -4,7 +4,7 @@ import { GenreService } from "../services/GenreService";
 import { BaseFilterStore } from "./BaseFilterStore";
 
 export class GenreStore extends BaseFilterStore<IGenre> {
-	constructor(rootStore: RootStore) {
-		super(rootStore, new GenreService());
-	}
+    constructor(rootStore: RootStore) {
+        super(rootStore, new GenreService());
+    }
 }

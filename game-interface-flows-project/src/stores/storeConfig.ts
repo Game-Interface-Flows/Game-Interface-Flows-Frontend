@@ -6,10 +6,10 @@ import { SortingStore } from "./SortingStore";
 import { ToastStore } from "./ToastStore";
 
 export const storeConfig = {
-	genresStore: GenreStore,
-	platformsStore: PlatformStore,
-	sortingStore: SortingStore,
-	flowsStore: FlowStore,
-	authStore: AuthStore,
-	toastStore: ToastStore,
+    genresStore: GenreStore,
+    platformsStore: PlatformStore,
+    sortingStore: SortingStore,
+    flowsStore: FlowStore,
+    authStore: AuthStore,
+    toastStore: ToastStore,
 };

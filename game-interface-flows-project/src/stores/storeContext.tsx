@@ -2,24 +2,26 @@ import React from "react";
 import { RootStore } from "./RootStore";
 
 export const StoreContext = React.createContext<RootStore | undefined>(
-	undefined
+    undefined
 );
 
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
-	children,
+    children,
 }) => {
-	const rootStore = new RootStore();
-	return (
-		<StoreContext.Provider value={rootStore}>{children}</StoreContext.Provider>
-	);
+    const rootStore = new RootStore();
+    return (
+        <StoreContext.Provider value={rootStore}>
+            {children}
+        </StoreContext.Provider>
+    );
 };
 
 export const useStore = () => {
-	const store = React.useContext(StoreContext);
-	if (!store) {
-		throw new Error("useStore must be used within a StoreProvider");
-	}
-	return store;
+    const store = React.useContext(StoreContext);
+    if (!store) {
+        throw new Error("useStore must be used within a StoreProvider");
+    }
+    return store;
 };
 
 export default StoreContext;

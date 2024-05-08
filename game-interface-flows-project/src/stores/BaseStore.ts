@@ -2,10 +2,10 @@ import { makeObservable } from "mobx";
 import { RootStore } from "./RootStore";
 
 export abstract class BaseStore {
-	protected rootStore: RootStore;
+    protected rootStore: RootStore;
 
-	constructor(rootStore: RootStore) {
-		this.rootStore = rootStore;
-		makeObservable(this, {});
-	}
+    constructor(rootStore: RootStore) {
+        this.rootStore = rootStore;
+        makeObservable(this, {});
+    }
 }

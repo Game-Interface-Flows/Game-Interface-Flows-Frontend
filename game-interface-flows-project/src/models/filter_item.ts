@@ -1,4 +1,4 @@
 export interface IFilterItem {
-	id: number;
-	name: string;
+    id: number;
+    name: string;
 }

@@ -3,28 +3,28 @@ import { RootStore } from "./RootStore";
 import { BaseStore } from "./BaseStore";
 
 export class ToastStore extends BaseStore {
-	itemName = "cookieConsent";
-	showToast = true;
+    itemName = "cookieConsent";
+    showToast = true;
 
-	constructor(rootStore: RootStore) {
-		super(rootStore);
-		makeObservable(this, {
-			showToast: observable,
-			checkSessionStorage: action,
-			acceptCookies: action,
-		});
-		this.checkSessionStorage();
-	}
+    constructor(rootStore: RootStore) {
+        super(rootStore);
+        makeObservable(this, {
+            showToast: observable,
+            checkSessionStorage: action,
+            acceptCookies: action,
+        });
+        this.checkSessionStorage();
+    }
 
-	checkSessionStorage = () => {
-		const hasConsented = sessionStorage.getItem(this.itemName);
-		if (hasConsented) {
-			this.showToast = false;
-		}
-	};
+    checkSessionStorage = () => {
+        const hasConsented = sessionStorage.getItem(this.itemName);
+        if (hasConsented) {
+            this.showToast = false;
+        }
+    };
 
-	acceptCookies = () => {
-		sessionStorage.setItem(this.itemName, "true");
-		this.showToast = false;
-	};
+    acceptCookies = () => {
+        sessionStorage.setItem(this.itemName, "true");
+        this.showToast = false;
+    };
 }

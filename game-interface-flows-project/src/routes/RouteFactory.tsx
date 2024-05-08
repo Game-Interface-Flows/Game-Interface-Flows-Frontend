@@ -4,13 +4,15 @@ import routeConfigs from "./config";
 import { PageTitleWrapper } from "../components/PageTitleWrapprer";
 
 export const createRoutes = () => {
-	return routeConfigs.map((config, index) => (
-		<Route
-			key={index}
-			path={config.path}
-			element={
-				<PageTitleWrapper title={config.title}>{config.element}</PageTitleWrapper>
-			}
-		/>
-	));
+    return routeConfigs.map((config, index) => (
+        <Route
+            key={index}
+            path={config.path}
+            element={
+                <PageTitleWrapper title={config.title}>
+                    {config.element}
+                </PageTitleWrapper>
+            }
+        />
+    ));
 };

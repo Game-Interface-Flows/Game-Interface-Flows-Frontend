@@ -8,18 +8,18 @@ import CookieConsentToast from "./components/CookieConsentToast";
 import Footer from "./components/Footer";
 
 function App() {
-	return (
-		<>
-			<StoreProvider>
-				<Router>
-					<Navbar />
-					<Routes>{createRoutes()}</Routes>
-					<CookieConsentToast />
-					<Footer />
-				</Router>
-			</StoreProvider>
-		</>
-	);
+    return (
+        <>
+            <StoreProvider>
+                <Router>
+                    <Navbar />
+                    <Routes>{createRoutes()}</Routes>
+                    <CookieConsentToast />
+                    <Footer />
+                </Router>
+            </StoreProvider>
+        </>
+    );
 }
 
 export default App;

@@ -1,3 +1,3 @@
 export interface ILike {
-	total_likes: number;
+    total_likes: number;
 }

@@ -4,7 +4,7 @@ import { BaseFilterStore } from "./BaseFilterStore";
 import { PlatformService } from "../services/PlatformService";
 
 export class PlatformStore extends BaseFilterStore<IPlatform> {
-	constructor(rootStore: RootStore) {
-		super(rootStore, new PlatformService());
-	}
+    constructor(rootStore: RootStore) {
+        super(rootStore, new PlatformService());
+    }
 }
