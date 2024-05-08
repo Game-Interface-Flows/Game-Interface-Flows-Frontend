@@ -33,6 +33,9 @@ export class FlowStore extends BaseStore {
             this.isPending = true;
             return;
         }
+        runInAction(() => {
+            this.flows = [];
+        });
         this.isLoading = true;
         const genres = this.rootStore.genresStore.selectedItemsNames;
         const platforms = this.rootStore.platformsStore.selectedItemsNames;
