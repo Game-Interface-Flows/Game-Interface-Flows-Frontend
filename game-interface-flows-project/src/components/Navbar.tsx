@@ -46,7 +46,7 @@ const Navbar: React.FC = observer(() => {
                         <b>
                             Game <span className="text-primary">Interface</span>{" "}
                             Flows
-                            <sup className="text-lowercase primary-text">β</sup>
+                            <sup className="text-lowercase text-primary">β</sup>
                         </b>
                     </Link>
                 </div>
