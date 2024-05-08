@@ -57,12 +57,12 @@ export class FlowService {
         }
     }
 
-    async fetchFlowById(flowId: number): Promise<IFlow> {
+    async fetchFlowById(flowId: number): Promise<IFlow | null> {
         try {
             const response = await request<IFlow>("GET", `/flows/${flowId}`);
             return response.data;
         } catch (error) {
-            throw new Error("Failed to fetch flow");
+            return null;
         }
     }
 

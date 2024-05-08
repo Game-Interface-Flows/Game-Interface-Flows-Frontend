@@ -5,33 +5,19 @@ import { ArcherContainer } from "react-archer";
 import { Screen } from "./Screen";
 
 interface FlowContentProps {
-    flow: IFlow | null;
+    flow: IFlow;
 }
 
 export function Flow({ flow }: FlowContentProps) {
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
     useEffect(() => {
-        let maxWidth = 0;
-        let maxHeight = 0;
-
-        flow?.screens.forEach((screen) => {
-            const currentWidth =
-                (screen.position_x + 1) *
-                (flow.screens_properties.width +
-                    flow.screens_properties.offset_x);
-            const currentHeight =
-                (screen.position_y + 1) *
-                (flow.screens_properties.height +
-                    flow.screens_properties.offset_y);
-
-            if (currentWidth > maxWidth) {
-                maxWidth = currentWidth;
-            }
-            if (currentHeight > maxHeight) {
-                maxHeight = currentHeight;
-            }
-        });
+        const maxWidth =
+            (flow.max_x + 1) *
+            (flow.screens_properties.width + flow.screens_properties.offset_x);
+        const maxHeight =
+            (flow.max_y + 1) *
+            (flow.screens_properties.height + flow.screens_properties.offset_y);
 
         setDimensions({ width: maxWidth, height: maxHeight });
     }, [flow]);

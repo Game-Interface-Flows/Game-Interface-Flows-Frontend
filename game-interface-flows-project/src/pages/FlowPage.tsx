@@ -4,6 +4,7 @@ import { useStore } from "../stores/storeContext";
 import { useParams } from "react-router-dom";
 import { FlowDetails } from "../components/FlowDetails";
 import { observer } from "mobx-react-lite";
+import NotFound from "../components/NotFound";
 
 const FlowPage: React.FC = observer(() => {
     const { flowsStore } = useStore();
@@ -18,14 +19,19 @@ const FlowPage: React.FC = observer(() => {
     return (
         <>
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-sm-12 col-md-9 d-flex p-0">
-                        <Flow flow={flowsStore.currentFlow} />
+                {flowsStore.currentFlow ? (
+                    <div className="row">
+                        <div className="col-sm-12 col-md-9 d-flex p-0">
+                            <Flow flow={flowsStore.currentFlow} />
+                        </div>
+                        <div className="col-sm-0 col-md-3 d-flex p-0">
+                            <FlowDetails flow={flowsStore.currentFlow} />
+                        </div>
                     </div>
-                    <div className="col-sm-0 col-md-3 d-flex p-0">
-                        <FlowDetails flow={flowsStore.currentFlow} />
-                    </div>
-                </div>
+                ) : (
+                    <NotFound />
+                )}
+                ;
             </div>
         </>
     );

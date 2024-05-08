@@ -37,8 +37,8 @@ export function FlowDetails({ flow }: FlowDetailsProps) {
             ) : (
                 <p>No source</p>
             )}
-            <p>Total Screens: 0</p>
-            <p>Average Connectivity: 0</p>
+            <p>Total Screens: {flow?.total_screens}</p>
+            <p>Average Connectivity: {flow?.average_connectivity}</p>
             {flow && <LikeButton flow={flow} />}
         </div>
     );
