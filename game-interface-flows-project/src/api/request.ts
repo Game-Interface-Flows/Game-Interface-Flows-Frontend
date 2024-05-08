@@ -23,7 +23,8 @@ interface RequestOptions<
 const request = <T, P = unknown, B = unknown>(
     method: Method,
     url: string,
-    options: RequestOptions<P, B> = {}
+    options: RequestOptions<P, B> = {},
+    content_type = "application/json"
 ): Promise<AxiosResponse<T>> => {
     const token = getToken();
     const requestConfig: AxiosRequestConfig = {
@@ -31,6 +32,7 @@ const request = <T, P = unknown, B = unknown>(
         url,
         ...options,
         headers: {
+            "Content-Type": content_type,
             Authorization: token ? `Token ${token}` : undefined,
         },
         paramsSerializer: (params) =>
