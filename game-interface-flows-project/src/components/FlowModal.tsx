@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalOverlay from "./ModalOverlay";
 import { ModalProps } from "../models/modal";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../stores/storeContext";
+import Select, { ActionMeta, MultiValue } from "react-select";
+import { OptionType } from "../models/option";
+import { useNavigate } from "react-router-dom";
 
 const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
-    const { flowsStore } = useStore();
+    const { flowsStore, genresStore, platformsStore } = useStore();
     const [title, setTitle] = useState("");
     const [source, setSource] = useState("");
     const [thumbnail, setThumbnail] = useState<File | null>(null);
     const [video, setVideo] = useState<File | null>(null);
     const [interval, setInterval] = useState(3);
+    const [selectedGenres, setSelectedGenres] = useState<
+        MultiValue<OptionType>
+    >([]);
+    const [selectedPlatforms, setSelectedPlatforms] = useState<
+        MultiValue<OptionType>
+    >([]);
+
+    useEffect(() => {
+        genresStore.loadItems();
+    }, [genresStore]);
+
+    useEffect(() => {
+        platformsStore.loadItems();
+    }, [platformsStore]);
+
+    const handleGenreChange = (
+        selectedOptions: MultiValue<OptionType>,
+        actionMeta: ActionMeta<OptionType>
+    ) => {
+        setSelectedGenres(selectedOptions);
+    };
+
+    const handlePlatformChange = (
+        selectedOptions: MultiValue<OptionType>,
+        actionMeta: ActionMeta<OptionType>
+    ) => {
+        setSelectedPlatforms(selectedOptions);
+    };
 
     // video restirctions
     const videoMaxSize = 500 * 1024 * 1024;
@@ -25,9 +56,22 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
     const thumbnailMaxSize = 10 * 1024 * 1024;
     const thumbnailAllowedFormats = ["image/jpeg", "image/png"];
 
-    const handleSubmit = () => {
-        console.log({ title, source, thumbnail, video, interval });
-        flowsStore.submitFlow();
+    const navigate = useNavigate();
+
+    const handleSubmit = async () => {
+        const flow = await flowsStore.submitFlow(
+            title,
+            source,
+            thumbnail,
+            video,
+            interval,
+            selectedGenres,
+            selectedPlatforms
+        );
+
+        if (flow) {
+            navigate(`/flow/${flow.id}`);
+        }
     };
 
     if (!show) return null;
@@ -212,6 +256,34 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                     <div className="form-text">
                                         Less interval - more time for processing
                                     </div>
+                                </div>
+                                <div className="mb-3">
+                                    <label
+                                        htmlFor="genre-select"
+                                        className="form-label text-uppercase"
+                                    >
+                                        Genres
+                                    </label>
+                                    <Select
+                                        options={genresStore.options}
+                                        value={selectedGenres}
+                                        onChange={handleGenreChange}
+                                        isMulti
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label
+                                        htmlFor="platform-select"
+                                        className="form-label text-uppercase"
+                                    >
+                                        Platforms
+                                    </label>
+                                    <Select
+                                        options={platformsStore.options}
+                                        value={selectedPlatforms}
+                                        onChange={handlePlatformChange}
+                                        isMulti
+                                    />
                                 </div>
                             </div>
                             <div className="modal-footer">

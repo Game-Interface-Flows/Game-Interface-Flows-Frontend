@@ -79,4 +79,36 @@ export class FlowService {
             throw new Error("Failed to like/dislike flow");
         }
     }
+
+    async submitNewFlow(
+        title: string,
+        source: string,
+        thumbnail: File,
+        video: File,
+        interval: number,
+        genres: string[] = [],
+        platforms: string[] = []
+    ) {
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("source", source);
+        formData.append("thumbnail", thumbnail);
+        formData.append("video", video);
+        formData.append("interval", interval.toString());
+        formData.append("genres", genres.join(","));
+        formData.append("platforms", platforms.join(","));
+
+        try {
+            const response = await request<IFlow, unknown, FormData>(
+                "POST",
+                "/flows/",
+                { data: formData },
+                "multipart/form-data"
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Failed to post flow:", error);
+            return null;
+        }
+    }
 }

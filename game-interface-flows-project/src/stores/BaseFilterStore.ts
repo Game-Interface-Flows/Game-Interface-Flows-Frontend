@@ -1,4 +1,5 @@
 import { IFilterItem } from "../models/filter_item";
+import { OptionType } from "../models/option";
 import { BaseService } from "../services/BaseService";
 import { BaseStore } from "./BaseStore";
 import { RootStore } from "./RootStore";
@@ -7,6 +8,7 @@ import { action, makeObservable, observable, runInAction } from "mobx";
 export abstract class BaseFilterStore<T extends IFilterItem> extends BaseStore {
     items: T[] = [];
     selectedItems: number[] = [];
+    options: OptionType[] = [];
     service: BaseService<T>;
 
     constructor(rootStore: RootStore, service: BaseService<T>) {
@@ -15,6 +17,7 @@ export abstract class BaseFilterStore<T extends IFilterItem> extends BaseStore {
         makeObservable(this, {
             items: observable,
             selectedItems: observable,
+            options: observable,
             toggleItemSelection: action,
             loadItems: action,
         });
@@ -41,6 +44,14 @@ export abstract class BaseFilterStore<T extends IFilterItem> extends BaseStore {
 
         runInAction(() => {
             this.items = fetchedItems;
+            this.options = this.convertFilterItemsToOptions(this.items);
         });
+    }
+
+    convertFilterItemsToOptions(items: IFilterItem[]): OptionType[] {
+        return items.map((item) => ({
+            value: item.name,
+            label: item.name.toUpperCase(),
+        }));
     }
 }

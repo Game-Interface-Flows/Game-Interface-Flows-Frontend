@@ -5,6 +5,7 @@ import { action, makeObservable, observable, runInAction } from "mobx";
 import { FlowService } from "../services/FlowService";
 import { IFlow } from "../models/flow";
 import { ILike } from "../models/like";
+import { OptionType } from "../models/option";
 
 export class FlowStore extends BaseStore {
     nextUrl: string | null = "/flows";
@@ -102,7 +103,26 @@ export class FlowStore extends BaseStore {
         });
     };
 
-    submitFlow = async () => {
-        return;
+    submitFlow = async (
+        title: string,
+        source: string,
+        thumbnail: File,
+        video: File,
+        interval: number,
+        genres: OptionType[],
+        platforms: OptionType[]
+    ): Promise<IFlow | null> => {
+        const genreValues = genres.map((genre) => genre.value);
+        const platformValues = platforms.map((platform) => platform.value);
+        const flow = await this.service.submitNewFlow(
+            title,
+            source,
+            thumbnail,
+            video,
+            interval,
+            genreValues,
+            platformValues
+        );
+        return flow;
     };
 }
