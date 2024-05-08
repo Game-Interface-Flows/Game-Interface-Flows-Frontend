@@ -37,7 +37,7 @@ export const FlowsGrid: React.FC = observer(() => {
 
     return (
         <>
-            <div className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4">
                 {flowsStore.flows.map((flow: IFlowPreview) => (
                     <div key={flow.id} className="col">
                         <FlowPreview flow={flow} />
