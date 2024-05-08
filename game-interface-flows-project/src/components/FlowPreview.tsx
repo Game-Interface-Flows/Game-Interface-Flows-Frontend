@@ -21,17 +21,19 @@ export function FlowPreview({ flow }: FlowProps) {
                 style={{ textDecoration: "none", color: "inherit" }}
             >
                 <div className="row h-100 g-0">
-                    <div className="col-6 h-100 rounded-start overflow-hidden">
-                        <div style={{ aspectRatio: "1 / 1" }}>
+                    {flow.flow_thumbnail_url && (
+                        <div className="col-6 h-100 d-flex align-items-center justify-content-center rounded-start overflow-hidden">
                             <img
                                 loading="lazy"
                                 src={flow.flow_thumbnail_url}
-                                className="h-100 w-100 object-fit-cover"
+                                className="over-img"
                                 alt={flow.title}
                             />
                         </div>
-                    </div>
-                    <div className="col-6 h-100">
+                    )}
+                    <div
+                        className={`h-100 ${flow.flow_thumbnail_url ? "col-6" : "col-12"}`}
+                    >
                         <div className="card-body card-border h-100 d-flex flex-column p-2">
                             <div className="row flex-fill">
                                 <p className="card-title text-uppercase mb-0 fs-5">

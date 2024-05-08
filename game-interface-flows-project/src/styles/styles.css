@@ -14,7 +14,8 @@ body {
 }
 
 .card {
-    max-height: 200px !important;
+    min-height: 180px;
+    max-height: 180px !important;
 }
 
 .card:not(.comment):hover {
@@ -123,4 +124,9 @@ body {
 
 .badge-small {
     font-size: 0.65em !important;
+}
+
+.over-img {
+    height: 100%;
+    width: auto;
 }
