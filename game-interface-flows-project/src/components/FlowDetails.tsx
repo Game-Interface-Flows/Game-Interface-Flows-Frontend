@@ -1,6 +1,7 @@
 import React from "react";
 
 import { IFlow } from "../models/flow";
+import { LikeButton } from "./LikeButton";
 
 interface FlowDetailsProps {
     flow: IFlow | null;
@@ -38,6 +39,7 @@ export function FlowDetails({ flow }: FlowDetailsProps) {
             )}
             <p>Total Screens: 0</p>
             <p>Average Connectivity: 0</p>
+            {flow && <LikeButton flow={flow} />}
         </div>
     );
 }

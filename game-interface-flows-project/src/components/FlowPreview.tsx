@@ -2,26 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { IFlowPreview } from "../models/flow_preview";
-import { observer } from "mobx-react-lite";
-import { useStore } from "../stores/storeContext";
 import { Helmet } from "react-helmet";
+import { LikeButton } from "./LikeButton";
 
 interface FlowProps {
     flow: IFlowPreview;
 }
 
-export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
-    const { flowsStore, authStore } = useStore();
-
-    const handleButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    ) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        flowsStore.likeFlow(flow.id, !flow.is_liked);
-    };
-
+export function FlowPreview({ flow }: FlowProps) {
     return (
         <div className="card h-100">
             <Helmet>
@@ -69,15 +57,7 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
                                 </div>
                             </div>
                             <div className="row flex-fill align-items-end">
-                                <div>
-                                    <button
-                                        className={`btn w-100 ${flow.is_liked ? "btn-primary" : "btn-outline-primary"}`}
-                                        onClick={handleButtonClick}
-                                        disabled={!authStore.token}
-                                    >
-                                        Likes: {flow.total_likes}
-                                    </button>
-                                </div>
+                                <LikeButton flow={flow} />
                             </div>
                         </div>
                     </div>
@@ -85,4 +65,4 @@ export const FlowPreview: React.FC<FlowProps> = observer(({ flow }) => {
             </Link>
         </div>
     );
-});
+}
