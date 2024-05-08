@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import MainPage from "../pages/MainPage";
-import TestPage from "../pages/TestPage";
 import FlowPage from "../pages/FlowPage";
 import React from "react";
+import NotFoundPage from "../pages/NotFoundPage";
 
 interface RouteConfig {
     path: string;
@@ -12,11 +12,15 @@ interface RouteConfig {
 
 const routeConfigs: RouteConfig[] = [
     { path: "/", title: "Home", element: MainPage() },
-    { path: "/test", title: "Test", element: TestPage() },
     {
         path: "/flows/:flowId",
         title: "Flow",
         element: React.createElement(FlowPage),
+    },
+    {
+        path: "*",
+        title: "Not Found",
+        element: NotFoundPage(),
     },
 ];
 
