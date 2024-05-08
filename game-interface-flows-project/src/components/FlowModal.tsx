@@ -182,7 +182,6 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                                 setThumbnail(null);
                                             }
                                         }}
-                                        required
                                     />
                                 </div>
                                 <div className="mb-3">
@@ -256,7 +255,9 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                         <span>10</span>
                                     </div>
                                     <div className="form-text">
-                                        Interval is time between frames to analyze. Less interval - better accuracy but slower processing.
+                                        Interval is time between frames to
+                                        analyze. Less interval - better accuracy
+                                        but slower processing.
                                     </div>
                                 </div>
                                 <div className="mb-3">
