@@ -31,7 +31,6 @@ const FlowPage: React.FC = observer(() => {
                 ) : (
                     <NotFound />
                 )}
-                ;
             </div>
         </>
     );
