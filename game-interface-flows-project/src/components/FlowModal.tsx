@@ -110,6 +110,7 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                         className="form-label text-uppercase"
                                     >
                                         Title
+                                        <span className="text-primary">*</span>
                                     </label>
                                     <input
                                         type="text"
@@ -190,6 +191,7 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                         className="form-label text-uppercase"
                                     >
                                         Video
+                                        <span className="text-primary">*</span>
                                     </label>
                                     <input
                                         type="file"
@@ -290,12 +292,14 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary text-uppercase"
-                                >
-                                    Submit
-                                </button>
+                                {!isLoading && (
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary text-uppercase"
+                                    >
+                                        Submit
+                                    </button>
+                                )}
                                 {isLoading && (
                                     <div
                                         className="spinner-border align-self-center text-primary"
