@@ -56,7 +56,7 @@ export const FlowsGrid: React.FC = observer(() => {
             )}
             {isNullOrEmpty && !flowsStore.isLoading && (
                 <div className="d-flex flex-column h-100 justify-content-center">
-                    <p className="text-center">
+                    <p className="text-center mt-5">
                         Strange... no flows are found.
                     </p>
                 </div>
