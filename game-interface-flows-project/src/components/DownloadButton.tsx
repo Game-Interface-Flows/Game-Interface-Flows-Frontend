@@ -14,7 +14,7 @@ const DownloadButton: React.FC<DownloadProps> = ({ title, screens }) => {
 
     const downloadImagesAsZip = async (screens: IScreen[]) => {
         const imageUrls = screens.map((screen) => screen.image);
-        const folderName = `images_${title.replace(/\s/g, "_")}`;
+        const folderName = `images_${title.toLowerCase().replace(/\s/g, "_")}`;
 
         setIsDownloading(true);
 
