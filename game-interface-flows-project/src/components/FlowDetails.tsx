@@ -10,7 +10,9 @@ interface FlowDetailsProps {
 export function FlowDetails({ flow }: FlowDetailsProps) {
     return (
         <div className="container-fluid bg-dark text-white py-3">
-            <h1 className="text-uppercase mb-0">{flow?.title}</h1>
+            <h2 className="text-uppercase mb-0">
+                {flow?.title} ({flow?.id})
+            </h2>
             <div className="mb-2">
                 {flow?.platforms.map((platform) => (
                     <span
@@ -32,14 +34,24 @@ export function FlowDetails({ flow }: FlowDetailsProps) {
             <p>
                 by {flow?.author.username}, {flow?.date}
             </p>
-            {flow?.source ? (
-                <a href={flow.source}>{flow.source}</a>
-            ) : (
-                <p>No source</p>
-            )}
-            <p>Total Screens: {flow?.total_screens}</p>
-            <p>Average Connectivity: {flow?.average_connectivity}</p>
-            {flow && <LikeButton flow={flow} />}
+            <div className="mb-4">
+                <h3 className="text-uppercase">Details</h3>
+                {flow?.source ? (
+                    <a href={flow.source}>{flow.source}</a>
+                ) : (
+                    <p>No source</p>
+                )}
+                <p>Total Screens: {flow?.total_screens}</p>
+                <p>Average Connectivity: {flow?.average_connectivity}</p>
+                {flow && <LikeButton flow={flow} />}
+            </div>
+            <div>
+                <h3 className="text-uppercase">Editing</h3>
+                <p>
+                    You cannot edit a flow here but soon a plugin for Figma will
+                    be released.
+                </p>
+            </div>
         </div>
     );
 }
