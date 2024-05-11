@@ -26,7 +26,8 @@ export function FlowPreview({ flow }: FlowProps) {
                             <img
                                 loading="lazy"
                                 src={flow.flow_thumbnail_url}
-                                className="over-img"
+                                width={200}
+                                height={200}
                                 alt={flow.title}
                             />
                         </div>
