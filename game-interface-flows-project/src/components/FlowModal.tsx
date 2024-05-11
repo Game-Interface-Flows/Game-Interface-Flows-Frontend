@@ -6,6 +6,7 @@ import { useStore } from "../stores/storeContext";
 import Select, { ActionMeta, MultiValue } from "react-select";
 import { OptionType } from "../models/option";
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from "./Tooltip";
 
 const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
     const { flowsStore, genresStore, platformsStore } = useStore();
@@ -130,15 +131,17 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                     >
                                         Source (link)
                                     </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="source"
-                                        value={source}
-                                        onChange={(e) =>
-                                            setSource(e.target.value)
-                                        }
-                                    />
+                                    <Tooltip text="Optional field for the original video, it does not affect a flow in any way.">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="source"
+                                            value={source}
+                                            onChange={(e) =>
+                                                setSource(e.target.value)
+                                            }
+                                        />
+                                    </Tooltip>
                                 </div>
                                 <div className="mb-3">
                                     <label
@@ -147,43 +150,47 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                     >
                                         Thumbnail
                                     </label>
-                                    <input
-                                        type="file"
-                                        className="form-control"
-                                        id="thumbnail"
-                                        onChange={(e) => {
-                                            if (
-                                                e.target.files &&
-                                                e.target.files.length > 0
-                                            ) {
-                                                const file = e.target.files[0];
-
+                                    <Tooltip text="Thumbnail will be cropped to a square.">
+                                        <input
+                                            type="file"
+                                            className="form-control"
+                                            id="thumbnail"
+                                            onChange={(e) => {
                                                 if (
-                                                    !thumbnailAllowedFormats.includes(
-                                                        file.type
-                                                    )
+                                                    e.target.files &&
+                                                    e.target.files.length > 0
                                                 ) {
-                                                    alert(
-                                                        "Invalid file format. Please select a photo file (e.g., JPEG, PNG)."
-                                                    );
-                                                    e.target.value = "";
-                                                    setThumbnail(null);
-                                                } else if (
-                                                    file.size > thumbnailMaxSize
-                                                ) {
-                                                    alert(
-                                                        "Thumbnail is too large. Maximum size is 10MB."
-                                                    );
-                                                    e.target.value = "";
-                                                    setThumbnail(null);
+                                                    const file =
+                                                        e.target.files[0];
+
+                                                    if (
+                                                        !thumbnailAllowedFormats.includes(
+                                                            file.type
+                                                        )
+                                                    ) {
+                                                        alert(
+                                                            "Invalid file format. Please select a photo file (e.g., JPEG, PNG)."
+                                                        );
+                                                        e.target.value = "";
+                                                        setThumbnail(null);
+                                                    } else if (
+                                                        file.size >
+                                                        thumbnailMaxSize
+                                                    ) {
+                                                        alert(
+                                                            "Thumbnail is too large. Maximum size is 10MB."
+                                                        );
+                                                        e.target.value = "";
+                                                        setThumbnail(null);
+                                                    } else {
+                                                        setThumbnail(file);
+                                                    }
                                                 } else {
-                                                    setThumbnail(file);
+                                                    setThumbnail(null);
                                                 }
-                                            } else {
-                                                setThumbnail(null);
-                                            }
-                                        }}
-                                    />
+                                            }}
+                                        />
+                                    </Tooltip>
                                 </div>
                                 <div className="mb-3">
                                     <label
@@ -239,27 +246,28 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
                                     >
                                         Interval ({interval} sec.)
                                     </label>
-                                    <input
-                                        type="range"
-                                        className="form-range"
-                                        id="interval"
-                                        min="3"
-                                        max="10"
-                                        value={interval}
-                                        onChange={(e) =>
-                                            setInterval(
-                                                parseInt(e.target.value)
-                                            )
-                                        }
-                                    />
+                                    <Tooltip
+                                        text="Interval is time between frames to
+                                        analyze. Less interval - better accuracy
+                                        but slower processing."
+                                    >
+                                        <input
+                                            type="range"
+                                            className="form-range"
+                                            id="interval"
+                                            min="3"
+                                            max="10"
+                                            value={interval}
+                                            onChange={(e) =>
+                                                setInterval(
+                                                    parseInt(e.target.value)
+                                                )
+                                            }
+                                        />
+                                    </Tooltip>
                                     <div className="d-flex justify-content-between">
                                         <span>3</span>
                                         <span>10</span>
-                                    </div>
-                                    <div className="form-text">
-                                        Interval is time between frames to
-                                        analyze. Less interval - better accuracy
-                                        but slower processing.
                                     </div>
                                 </div>
                                 <div className="mb-3">
