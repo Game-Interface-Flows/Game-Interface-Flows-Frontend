@@ -10,20 +10,20 @@ export function MainPage() {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-md-3 pt-2">
-                    <div className="border border-2 border rounded p-2">
-                        <div className="row px-3 py-1">
+                    <div className="border border-2 border rounded p-2 px-4">
+                        <div className="row py-1">
                             <h3 className="text-uppercase p-0">Order</h3>
                             <SortingOptions />
                         </div>
-                        <div className="row px-3 py-1">
+                        <div className="row py-1">
                             <h3 className="text-uppercase p-0">Platforms</h3>
                             <PlatformFilter />
                         </div>
-                        <div className="row px-3 py-1">
+                        <div className="row py-1">
                             <h3 className="text-uppercase p-0">Genres</h3>
                             <GenreFilter />
                         </div>
-                        <div className="row px-3 py-1">
+                        <div className="row py-1">
                             <ApplyFilteringBytton />
                         </div>
                     </div>
