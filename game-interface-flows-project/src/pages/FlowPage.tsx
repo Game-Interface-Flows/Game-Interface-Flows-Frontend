@@ -22,8 +22,8 @@ const FlowPage: React.FC = observer(() => {
         <>
             {flowsStore.currentFlow ? (
                 <>
-                    {flowsStore.currentFlow.process === "Completed" && (
-                        <div className="row">
+                    {flowsStore.currentFlow.process === "Completed" ? (
+                        <div className="row w-100">
                             <div className="col-sm-12 col-md-9 d-flex p-0">
                                 <Flow flow={flowsStore.currentFlow} />
                             </div>
@@ -31,20 +31,28 @@ const FlowPage: React.FC = observer(() => {
                                 <FlowDetails flow={flowsStore.currentFlow} />
                             </div>
                         </div>
+                    ) : (
+                        <div className="flex-fill d-flex align-items-center justify-content-center">
+                            {flowsStore.currentFlow.process === "Fail" && (
+                                <div
+                                    className="alert alert-danger"
+                                    role="alert"
+                                >
+                                    There was an exception durning flow
+                                    building, it will be deleted soon.
+                                </div>
+                            )}
+                            {flowsStore.currentFlow.process ===
+                                "In Process" && (
+                                <div
+                                    className="alert alert-warning"
+                                    role="alert"
+                                >
+                                    Flow is under constructions.
+                                </div>
+                            )}
+                        </div>
                     )}
-                    <div className="flex-fill d-flex align-items-center justify-content-center">
-                        {flowsStore.currentFlow.process === "Fail" && (
-                            <div className="alert alert-danger" role="alert">
-                                There was an exception durning flow building, it
-                                will be deleted soon.
-                            </div>
-                        )}
-                        {flowsStore.currentFlow.process === "In Process" && (
-                            <div className="alert alert-warning" role="alert">
-                                Flow is under constructions.
-                            </div>
-                        )}
-                    </div>
                 </>
             ) : (
                 <NotFound />
