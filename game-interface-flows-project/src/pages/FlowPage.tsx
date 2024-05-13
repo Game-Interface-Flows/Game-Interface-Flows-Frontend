@@ -23,7 +23,7 @@ const FlowPage: React.FC = observer(() => {
             {flowsStore.currentFlow ? (
                 <>
                     {flowsStore.currentFlow.process === "Completed" ? (
-                        <div className="row w-100">
+                        <div className="row w-100 g-0">
                             <div className="col-sm-12 col-md-9 d-flex p-0">
                                 <Flow flow={flowsStore.currentFlow} />
                             </div>

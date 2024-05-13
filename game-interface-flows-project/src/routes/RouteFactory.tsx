@@ -10,7 +10,7 @@ export const createRoutes = () => {
             path={config.path}
             element={
                 <PageTitleWrapper title={config.title}>
-                    <div className="flex-fill d-flex px-2">
+                    <div className="flex-fill d-flex">
                         {config.element}
                     </div>
                 </PageTitleWrapper>

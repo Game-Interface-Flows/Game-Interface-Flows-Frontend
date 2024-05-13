@@ -8,7 +8,7 @@ import { SortingOptions } from "../components/SortingOptions";
 export function MainPage() {
     return (
         <>
-            <div className="row">
+            <div className="row g-0 mx-3">
                 <div className="col-md-3 pt-2">
                     <div className="border border-2 border rounded p-2 px-4">
                         <div className="row py-1">
