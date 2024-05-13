@@ -22,13 +22,27 @@ const FlowPage: React.FC = observer(() => {
         <>
             <div className="container-fluid">
                 {flowsStore.currentFlow ? (
-                    <div className="row">
-                        <div className="col-sm-12 col-md-9 d-flex p-0">
-                            <Flow flow={flowsStore.currentFlow} />
-                        </div>
-                        {!isLoading && (
-                            <div className="col-sm-0 col-md-3 d-flex p-0">
-                                <FlowDetails flow={flowsStore.currentFlow} />
+                    <div>
+                        {flowsStore.currentFlow.process === "Completed" && (
+                            <div className="row">
+                                <div className="col-sm-12 col-md-9 d-flex p-0">
+                                    <Flow flow={flowsStore.currentFlow} />
+                                </div>
+                                <div className="col-sm-0 col-md-3 d-flex p-0">
+                                    <FlowDetails
+                                        flow={flowsStore.currentFlow}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                        {flowsStore.currentFlow.process === "Fail" && (
+                            <div className="row">
+                                <p>Failed!</p>
+                            </div>
+                        )}
+                        {flowsStore.currentFlow.process === "In Process" && (
+                            <div className="row">
+                                <p>Failed!</p>
                             </div>
                         )}
                     </div>
