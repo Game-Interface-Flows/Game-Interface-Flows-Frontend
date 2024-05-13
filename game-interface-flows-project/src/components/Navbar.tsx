@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SignUpModal from "./SignUpModal";
 import LoginModal from "./LoginModal";
 import { observer } from "mobx-react-lite";
@@ -8,12 +8,18 @@ import FlowModal from "./FlowModal";
 
 const Navbar: React.FC = observer(() => {
     const { authStore } = useStore();
+    const navigate = useNavigate();
     const [showSignUp, setShowSignUp] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [showFlow, setShowFlow] = useState(false);
     const location = useLocation();
 
     const isRoot = location.pathname === "/";
+
+    function handleLogout() {
+        authStore.logoutUser();
+        navigate("/");
+    }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -76,12 +82,34 @@ const Navbar: React.FC = observer(() => {
                             />
                         </>
                     ) : (
-                        <button
-                            className="btn btn-outline-primary text-uppercase"
-                            onClick={() => authStore.logoutUser()}
-                        >
-                            Log out
-                        </button>
+                        <div className="dropdown">
+                            <button
+                                className="btn dropdown-toggle text-uppercase"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                username
+                            </button>
+                            <ul className="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <Link
+                                        className="dropdown-item text-uppercase"
+                                        to="/personal"
+                                    >
+                                        My Flows
+                                    </Link>
+                                </li>
+                                <li>
+                                    <a
+                                        className="dropdown-item text-uppercase"
+                                        href="#"
+                                        onClick={() => handleLogout()}
+                                    >
+                                        Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     )}
                 </div>
             </div>
