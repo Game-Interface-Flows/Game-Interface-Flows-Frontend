@@ -4,9 +4,7 @@ import NotFound from "../components/NotFound";
 const NotFoundPage = () => {
     return (
         <>
-            <div className="container-fluid">
-                <NotFound />
-            </div>
+            <NotFound />
         </>
     );
 };

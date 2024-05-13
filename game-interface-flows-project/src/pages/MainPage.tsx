@@ -7,7 +7,7 @@ import { SortingOptions } from "../components/SortingOptions";
 
 export function MainPage() {
     return (
-        <div className="container-fluid">
+        <>
             <div className="row">
                 <div className="col-md-3 pt-2">
                     <div className="border border-2 border rounded p-2 px-4">
@@ -35,7 +35,7 @@ export function MainPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
