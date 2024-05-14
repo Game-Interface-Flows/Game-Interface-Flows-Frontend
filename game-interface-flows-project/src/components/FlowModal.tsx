@@ -72,7 +72,7 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
         );
         setIsLoading(false);
         if (flow) {
-            navigate(`/flows/${flow.id}`);
+            navigate("/personal");
             onHide();
         }
     };
