@@ -73,14 +73,19 @@ export class FlowStore extends BaseStore {
             this.isLoading = true;
         });
 
-        const fetchedFlows = await this.service.fetchMyFlows();
+        if (this.rootStore.authStore.token !== null) {
+            const fetchedFlows = await this.service.fetchMyFlows();
+
+            runInAction(() => {
+                if (fetchedFlows) {
+                    this.flows = fetchedFlows;
+                } else {
+                    this.error = "Failed to fetch flows.";
+                }
+            });
+        }
 
         runInAction(() => {
-            if (fetchedFlows) {
-                this.flows = fetchedFlows;
-            } else {
-                this.error = "Failed to fetch flows.";
-            }
             this.isLoading = false;
         });
     };
