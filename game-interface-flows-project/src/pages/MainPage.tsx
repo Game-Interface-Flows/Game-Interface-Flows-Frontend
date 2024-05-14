@@ -41,6 +41,7 @@ const MainPage: React.FC = observer(() => {
                             loadInitialFlows={flowsStore.loadFlows}
                             loadMoreFlows={flowsStore.loadMoreFlows}
                             nextUrl={flowsStore.nextUrl}
+                            showPersonalInfo={false}
                         />
                     </div>
                 </div>

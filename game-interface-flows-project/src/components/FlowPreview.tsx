@@ -42,15 +42,19 @@ export function FlowPreview({ flow, showStatus }: FlowProps) {
                                     {flow.title}
                                 </p>
                                 <div>
-                                    <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
-                                        {flow.status}
-                                    </span>
-                                    <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
-                                        {flow.process}
-                                    </span>
-                                    <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
-                                        {flow.visibility}
-                                    </span>
+                                    {showStatus && (
+                                        <>
+                                            <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
+                                                {flow.status}
+                                            </span>
+                                            <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
+                                                {flow.process}
+                                            </span>
+                                            <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
+                                                {flow.visibility}
+                                            </span>
+                                        </>
+                                    )}
                                     {flow.platforms.map((platform) => (
                                         <span
                                             key={platform.id}

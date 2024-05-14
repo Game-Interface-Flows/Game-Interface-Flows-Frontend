@@ -22,6 +22,7 @@ const PersonalPage: React.FC = observer(() => {
                             isLoading={flowsStore.isLoading}
                             loadInitialFlows={flowsStore.loadMyFlows}
                             loadMoreFlows={flowsStore.loadMoreFlows}
+                            showPersonalInfo={true}
                         />
                     </div>
                 </div>

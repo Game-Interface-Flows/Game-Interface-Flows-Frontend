@@ -9,10 +9,18 @@ interface FlowsGridProps {
     loadInitialFlows: () => void;
     loadMoreFlows: () => void;
     nextUrl?: string;
+    showPersonalInfo: boolean;
 }
 
 export const FlowsGrid: React.FC<FlowsGridProps> = observer(
-    ({ flows, isLoading, loadInitialFlows, loadMoreFlows, nextUrl }) => {
+    ({
+        flows,
+        isLoading,
+        loadInitialFlows,
+        loadMoreFlows,
+        nextUrl,
+        showPersonalInfo,
+    }) => {
         const loaderRef = useRef(null);
 
         useEffect(() => {
@@ -48,7 +56,10 @@ export const FlowsGrid: React.FC<FlowsGridProps> = observer(
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4">
                         {flows.map((flow: IFlowPreview) => (
                             <div key={flow.id} className="col">
-                                <FlowPreview flow={flow} showStatus={true} />
+                                <FlowPreview
+                                    flow={flow}
+                                    showStatus={showPersonalInfo}
+                                />
                             </div>
                         ))}
                     </div>
