@@ -1,6 +1,7 @@
 import { axiosErrorHandler } from "../api/error";
 import request from "../api/request";
 import { IFlow } from "../models/flow";
+import { IFlowPreview } from "../models/flow_preview";
 import { IFlows } from "../models/flows";
 import { ILike } from "../models/like";
 
@@ -48,6 +49,19 @@ export class FlowService {
         }
     }
 
+    async fetchMyFlows(): Promise<IFlowPreview[] | null> {
+        try {
+            const response = await request<IFlowPreview[]>(
+                "GET",
+                `${this.path}/my`
+            );
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
     async fetchFlowsByUrl(url: string) {
         try {
             const response = await request<IFlows>("GET", url);
@@ -59,7 +73,10 @@ export class FlowService {
 
     async fetchFlowById(flowId: number): Promise<IFlow | null> {
         try {
-            const response = await request<IFlow>("GET", `/flows/${flowId}`);
+            const response = await request<IFlow>(
+                "GET",
+                `${this.path}/${flowId}`
+            );
             return response.data;
         } catch (error) {
             return null;
@@ -72,7 +89,7 @@ export class FlowService {
         try {
             const response = await request<ILike>(
                 method,
-                `/flows/${flowId}/likes/`
+                `${this.path}/${flowId}/likes/`
             );
             return response.data;
         } catch (error) {

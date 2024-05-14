@@ -1,67 +1,75 @@
 import React, { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { FlowPreview } from "../components/FlowPreview";
-import { useStore } from "../stores/storeContext";
 import { IFlowPreview } from "../models/flow_preview";
 
-export const FlowsGrid: React.FC = observer(() => {
-    const { flowsStore, authStore } = useStore();
-    const loaderRef = useRef(null);
-    const isNullOrEmpty =
-        flowsStore.flows === null || flowsStore.flows.length === 0;
+interface FlowsGridProps {
+    flows: IFlowPreview[];
+    isLoading: boolean;
+    loadInitialFlows: () => void;
+    loadMoreFlows: () => void;
+    nextUrl?: string;
+}
 
-    useEffect(() => {
-        flowsStore.loadFlows();
-    }, [flowsStore, authStore.token]);
+export const FlowsGrid: React.FC<FlowsGridProps> = observer(
+    ({ flows, isLoading, loadInitialFlows, loadMoreFlows, nextUrl }) => {
+        const loaderRef = useRef(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting && flowsStore.nextUrl) {
-                    flowsStore.loadMoreFlows();
-                }
-            },
-            { threshold: 1.0 }
-        );
+        useEffect(() => {
+            loadInitialFlows();
+        }, [loadInitialFlows]);
 
-        if (loaderRef.current) {
-            observer.observe(loaderRef.current);
-        }
+        useEffect(() => {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    if (entries[0].isIntersecting && nextUrl) {
+                        loadMoreFlows();
+                    }
+                },
+                { threshold: 1.0 }
+            );
 
-        return () => {
             if (loaderRef.current) {
-                observer.unobserve(loaderRef.current);
+                observer.observe(loaderRef.current);
             }
-        };
-    }, [flowsStore]);
 
-    return (
-        <>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4">
-                {flowsStore.flows.map((flow: IFlowPreview) => (
-                    <div key={flow.id} className="col">
-                        <FlowPreview flow={flow} />
+            return () => {
+                if (loaderRef.current) {
+                    observer.unobserve(loaderRef.current);
+                }
+            };
+        }, [loadMoreFlows, nextUrl]);
+
+        const isNullOrEmpty = flows === null || flows.length === 0;
+
+        return (
+            <>
+                {!isLoading && (
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4">
+                        {flows.map((flow: IFlowPreview) => (
+                            <div key={flow.id} className="col">
+                                <FlowPreview flow={flow} showStatus={true} />
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            {flowsStore.isLoading && (
-                <div className="d-flex h-100 justify-content-center">
-                    <div
-                        className="spinner-border align-self-center text-primary"
-                        role="status"
-                    >
-                        <span className="visually-hidden">Loading...</span>
+                )}
+                {isLoading && (
+                    <div className="d-flex h-100 justify-content-center">
+                        <div
+                            className="spinner-border align-self-center text-primary"
+                            role="status"
+                        >
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
                     </div>
-                </div>
-            )}
-            {isNullOrEmpty && !flowsStore.isLoading && (
-                <div className="d-flex flex-column h-100 justify-content-center">
-                    <p className="text-center mt-5">
-                        Strange... no flows are found.
-                    </p>
-                </div>
-            )}
-            <div ref={loaderRef} />
-        </>
-    );
-});
+                )}
+                {isNullOrEmpty && isLoading === false && (
+                    <div className="d-flex flex-column h-100 justify-content-center">
+                        <p className="text-center mt-5">nothing :(</p>
+                    </div>
+                )}
+                <div ref={loaderRef} />
+            </>
+        );
+    }
+);

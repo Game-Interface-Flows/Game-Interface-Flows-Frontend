@@ -27,6 +27,7 @@ export class FlowStore extends BaseStore {
             error: observable,
             loadFlows: action,
             loadMoreFlows: action,
+            loadMyFlows: action,
         });
     }
 
@@ -63,6 +64,24 @@ export class FlowStore extends BaseStore {
                 this.isPending = false;
                 this.loadMoreFlows();
             }
+        });
+    };
+
+    loadMyFlows = async () => {
+        runInAction(() => {
+            this.flows = [];
+            this.isLoading = true;
+        });
+
+        const fetchedFlows = await this.service.fetchMyFlows();
+
+        runInAction(() => {
+            if (fetchedFlows) {
+                this.flows = fetchedFlows;
+            } else {
+                this.error = "Failed to fetch flows.";
+            }
+            this.isLoading = false;
         });
     };
 

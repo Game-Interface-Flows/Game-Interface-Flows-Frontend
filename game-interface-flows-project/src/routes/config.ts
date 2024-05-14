@@ -12,10 +12,14 @@ interface RouteConfig {
 }
 
 const routeConfigs: RouteConfig[] = [
-    { path: "/", title: "Home", element: MainPage() },
-    { path: "/home", title: "Home", element: MainPage() },
-    { path: "/flows", title: "Home", element: MainPage() },
-    { path: "personal", title: "Personal", element: PersonalPage() },
+    { path: "/", title: "Home", element: React.createElement(MainPage) },
+    { path: "/home", title: "Home", element: React.createElement(MainPage) },
+    { path: "/flows", title: "Home", element: React.createElement(MainPage) },
+    {
+        path: "/personal",
+        title: "Personal",
+        element: React.createElement(PersonalPage),
+    },
     {
         path: "/flows/:flowId",
         title: "Flow",

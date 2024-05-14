@@ -7,9 +7,10 @@ import { LikeButton } from "./LikeButton";
 
 interface FlowProps {
     flow: IFlowPreview;
+    showStatus: boolean;
 }
 
-export function FlowPreview({ flow }: FlowProps) {
+export function FlowPreview({ flow, showStatus }: FlowProps) {
     return (
         <div className="card h-100">
             <Helmet>
@@ -41,6 +42,15 @@ export function FlowPreview({ flow }: FlowProps) {
                                     {flow.title}
                                 </p>
                                 <div>
+                                    <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
+                                        {flow.status}
+                                    </span>
+                                    <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
+                                        {flow.process}
+                                    </span>
+                                    <span className="badge badge-small bg-light text-dark me-1 text-uppercase">
+                                        {flow.visibility}
+                                    </span>
                                     {flow.platforms.map((platform) => (
                                         <span
                                             key={platform.id}

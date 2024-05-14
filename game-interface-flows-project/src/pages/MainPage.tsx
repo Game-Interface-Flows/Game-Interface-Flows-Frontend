@@ -4,8 +4,12 @@ import { GenreFilter } from "../components/GenreFilter";
 import { ApplyFilteringBytton } from "../components/ApplyFilteringButton";
 import { PlatformFilter } from "../components/PlatformFilter";
 import { SortingOptions } from "../components/SortingOptions";
+import { useStore } from "../stores/storeContext";
+import { observer } from "mobx-react-lite";
 
-export function MainPage() {
+const MainPage: React.FC = observer(() => {
+    const { flowsStore } = useStore();
+
     return (
         <>
             <div className="row w-100 g-0 mx-3">
@@ -31,12 +35,18 @@ export function MainPage() {
                 <div className="col-md-9 pt-2">
                     <div className="mx-2 border border-2 border-white pt-2">
                         <h3 className="text-uppercase pt-1">Flows</h3>
-                        <FlowsGrid />
+                        <FlowsGrid
+                            flows={flowsStore.flows}
+                            isLoading={flowsStore.isLoading}
+                            loadInitialFlows={flowsStore.loadFlows}
+                            loadMoreFlows={flowsStore.loadMoreFlows}
+                            nextUrl={flowsStore.nextUrl}
+                        />
                     </div>
                 </div>
             </div>
         </>
     );
-}
+});
 
 export default MainPage;
