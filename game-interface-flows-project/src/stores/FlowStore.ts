@@ -121,10 +121,14 @@ export class FlowStore extends BaseStore {
     };
 
     loadCurrentFlowById = async (flowId: number) => {
+        runInAction(() => {
+            this.isLoading = true;
+        });
         const fetchedFlow = await this.service.fetchFlowById(flowId);
 
         runInAction(() => {
             this.currentFlow = fetchedFlow;
+            this.isLoading = false;
         });
     };
 

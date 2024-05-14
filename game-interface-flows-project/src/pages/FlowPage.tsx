@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Flow from "../components/Flow";
 import { useStore } from "../stores/storeContext";
 import { useParams } from "react-router-dom";
 import { FlowDetails } from "../components/FlowDetails";
 import { observer } from "mobx-react-lite";
 import NotFound from "../components/NotFound";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 const FlowPage: React.FC = observer(() => {
     const { flowsStore } = useStore();
     const { flowId } = useParams<{ flowId: string }>();
-    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         if (flowId) {
             flowsStore.loadCurrentFlowById(parseInt(flowId, 10));
         }
-        setLoading(false);
     }, [flowId, flowsStore]);
 
     return (
@@ -38,8 +37,8 @@ const FlowPage: React.FC = observer(() => {
                                     className="alert alert-danger"
                                     role="alert"
                                 >
-                                    There was an exception durning flow
-                                    building, it will be deleted soon.
+                                    There was an exception durning building
+                                    process, the flow will be deleted soon.
                                 </div>
                             )}
                             {flowsStore.currentFlow.process ===
@@ -48,14 +47,21 @@ const FlowPage: React.FC = observer(() => {
                                     className="alert alert-warning"
                                     role="alert"
                                 >
-                                    Flow is under constructions.
+                                    Flow is under constructions. Building
+                                    process can take up to 20-30 mins.
                                 </div>
                             )}
                         </div>
                     )}
                 </>
             ) : (
-                <NotFound />
+                <>
+                    {flowsStore.isLoading === true ? (
+                        <LoadingSpinner />
+                    ) : (
+                        <NotFound />
+                    )}
+                </>
             )}
         </>
     );

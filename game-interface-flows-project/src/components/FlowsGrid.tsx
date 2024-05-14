@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { FlowPreview } from "../components/FlowPreview";
 import { IFlowPreview } from "../models/flow_preview";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 interface FlowsGridProps {
     flows: IFlowPreview[];
@@ -64,16 +65,7 @@ export const FlowsGrid: React.FC<FlowsGridProps> = observer(
                         ))}
                     </div>
                 )}
-                {isLoading && (
-                    <div className="d-flex h-100 justify-content-center">
-                        <div
-                            className="spinner-border align-self-center text-primary"
-                            role="status"
-                        >
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                )}
+                {isLoading === true && <LoadingSpinner />}
                 {isNullOrEmpty && isLoading === false && (
                     <div className="d-flex flex-column h-100 justify-content-center">
                         <p className="text-center mt-5">nothing :(</p>
