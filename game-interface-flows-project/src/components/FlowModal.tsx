@@ -45,7 +45,7 @@ const FlowModal: React.FC<ModalProps> = observer(({ show, onHide }) => {
     };
 
     // video restirctions
-    const videoMaxSize = 500 * 1024 * 1024;
+    const videoMaxSize = 1024 * 1024 * 1024;
     const videoAllowedFormats = [
         "video/mp4",
         "video/avi",
